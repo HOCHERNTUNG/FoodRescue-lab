@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reservation Details - FoodRescue</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#715c00",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#7c5800",
+                        "primary-container": "#ffd300",
+                        "inverse-surface": "#2f3131",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary-container": "#e4e2e1",
+                        "surface-bright": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#7b5700",
+                        "on-primary-container": "#705b00",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-high": "#e8e8e8",
+                        "outline": "#7f775f",
+                        "on-surface": "#1a1c1c",
+                        "on-surface-variant": "#4d4632",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed": "#ffdea8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ecc300",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary-container": "#656464",
+                        "secondary": "#5f5e5e",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "on-primary-fixed": "#231b00",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffe17a",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#271900",
+                        "tertiary-container": "#ffd07c",
+                        "surface-dim": "#dadada",
+                        "primary": "#715c00",
+                        "inverse-primary": "#ecc300",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-primary-fixed-variant": "#554500",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed": "#e4e2e1",
+                        "outline-variant": "#d0c6ab"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "section-padding": "32px",
+                        "container-margin": "24px",
+                        "stack-gap": "16px",
+                        "inline-gutter": "12px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"],
+                        "body-md": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "title-sm": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    fontSize: {
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "display-lg": ["34px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "title-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md pb-[100px]">
+<!-- Contextual Task Header -->
+<header class="flex justify-between items-center px-container-margin py-4 w-full bg-surface-container-lowest z-50 sticky top-0 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors flex-shrink-0"><img alt="Calendar" class="w-full h-full object-contain p-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMPwMgyCLr8Sl7Ye4aqEUDTpzjORgINK6TIcI1bylEZp4CK2c5FopiY9ysVpyB2svtjLlyBCbaUnDiWJ6h7mBxC2nkxD4E3Igj3yZTlCCIknUUkOJNEuE7SQmYdm4sTf1LH60kMLoWrfeIk-AnKqf7BfLB82qeL1gaGnzuxpjKPsf5WCO29zJnr6Jy-n-BzP0IaxvnJvrGBO64St6mfMTbAOUzXCIRJMUY0NunLgR2PikkGoIeu7XNpYrXsAXFHU-Et2OuKWWgYzw"></button>
+<h1 class="font-headline-md text-headline-md text-on-surface text-center flex-1">Details</h1>
+<button aria-label="Profile" class="w-10 h-10 rounded-full overflow-hidden hover:opacity-80 transition-opacity flex-shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg">
+</button></header>
+<main class="px-container-margin pt-stack-gap flex flex-col gap-section-padding">
+<!-- Status Banner -->
+<div class="bg-tertiary-container text-on-tertiary-container rounded-xl p-4 flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">local_shipping</span>
+<div>
+<p class="font-title-sm text-title-sm font-semibold">Ready for Pickup</p>
+<p class="font-body-md text-body-md opacity-90">Please pick up at your selected timing.</p>
+</div>
+</div>
+<!-- Primary Details Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-4 flex flex-col gap-4">
+<!-- Item & Shop -->
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface mb-1">Deluxe Surplus Box</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+                        The Artisan Patisserie
+                    </p>
+</div>
+</div>
+<hr class="border-surface-variant">
+<!-- Timing & Order ID Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Pickup Time</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">schedule</span> 5:15 PM</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Order ID</p>
+<p class="font-body-md text-body-md text-on-surface font-mono bg-surface-variant px-2 py-1 rounded inline-block">
+                        #FR-9925-B8X
+                    </p>
+</div>
+</div>
+<hr class="border-surface-variant">
+<!-- QR Code Module -->
+<div class="flex flex-col items-center justify-center p-6 bg-background rounded-lg border-2 border-dashed border-outline-variant">
+<img alt="Pickup QR Code" class="w-32 h-32 object-contain mb-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeudzpjo1rha_Sp4JbMu0-p8SfoftNrxIHshzjyDREwF4tSdcW1Rqa2QgA_oYJwA5t3hhT2-2z9R-uScLJYwo7yhWmol7X-HubcOviY6a5CttI7Rru_j3XM5z9GlBNNN70NTCF9e4cpt0umd_7m4lF21akKsGlpEuakLM-gIhY4R1bsP3G5QQh9DFxuwmfLtV4kwL5k1-jzt8RnydvjMKWrEKmVbmQ5uZNzbiAd4wltOrFS0rOKgw9aDz6pe1EyxKnAGZDdkbuI0Y">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Scan at pickup</p>
+</div>
+</section>
+<!-- Location Map Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col">
+<!-- Map Placeholder Image -->
+<div class="h-[180px] w-full bg-surface-variant relative">
+<img alt="Location Map" class="w-full h-full object-cover grayscale opacity-90" data-alt="A clean, minimalist digital map interface showing a location pin for a bakery in an urban center. The map utilizes a high-key, light-mode aesthetic with soft grey tones for streets and pure white for buildings, accented by a subtle, precise Cyber-Yellow location marker reflecting a professional logistics application." data-location="The Artisan Patisserie, New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp13bTXNFs6EP9lA87nJ4rL3u_xFIxKnexTlOInQlx1xgiqaZXH5t7_qgFoPvDKiVAO-Lna9N_VwJLWNbWGrbqhEa0NztzhFJDlE3is2OPuAeonVy003XH3uS7hXWqYCUWYGrVfxdSmgQWrrsKvKW7E6MvV5Oue-297-8SeN42m3nzuG__uWd1YYKv--5GxPsiJA3fAH5kd_NbaxdeNYnXRHllAgCuV-N9k1SElvkwQ3LQUgeXdNeU4gsQwM29E-l4DM3YR39dsc0">
+</div>
+<div class="p-4 flex items-start gap-3">
+<div class="mt-1 bg-surface-container-high p-2 rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface">The Artisan Patisserie</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">456 Culinary Lane, Singapore</p>
+<button class="mt-2 font-label-caps text-label-caps text-primary uppercase font-bold tracking-wide hover:opacity-80 flex items-center gap-1">
+                        Get Directions <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<section class="flex flex-col gap-inline-gutter mt-4">
+<!-- Update Reservation (Primary) -->
+<button class="bg-transparent border-2 border-outline text-on-surface font-label-caps text-label-caps uppercase font-bold tracking-wider w-full py-4 rounded-[16px] flex justify-center items-center gap-2 hover:bg-surface-variant active:scale-[0.98] transition-all mb-2"><span class="material-symbols-outlined text-[18px]">list_alt</span>View All Reservations</button><button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase font-bold tracking-wider w-full py-4 rounded-[16px] flex justify-center items-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                Update pickup timing</button>
+<!-- Cancel Reservation (Secondary/Danger) -->
+<button class="bg-transparent border-2 border-error text-error font-label-caps text-label-caps uppercase font-bold tracking-wider w-full py-4 rounded-[16px] flex justify-center items-center gap-2 hover:bg-error-container active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+                Cancel Reservation
+            </button>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-zinc-950 border-t-2 border-zinc-100 dark:border-zinc-800 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] rounded-t-2xl"><a class="flex flex-col items-center justify-center font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider hover:text-yellow-500 transition-colors active:scale-90 duration-200 text-zinc-400 dark:text-zinc-600" href="#"><span class="material-symbols-outlined">home</span><span class="">Home</span></a><a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#"><span class="material-symbols-outlined">search</span><span class="">Explore</span></a><a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#"><span class="material-symbols-outlined">eco</span><span class="">Impact</span></a><a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#"><span class="material-symbols-outlined">person</span><span class="">Profile</span></a></nav><div class="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-sm" id="update-reservation-modal"><div class="bg-surface-container-lowest w-full max-w-md rounded-t-[24px] sm:rounded-[24px] shadow-2xl overflow-hidden animate-in slide-in-from-bottom duration-300 flex flex-col max-h-[90vh]"><div class="px-6 py-5 border-b border-surface-variant flex items-center justify-between shrink-0"><h2 class="font-headline-md text-headline-md text-on-surface">Update Reservation</h2><button class="p-1 rounded-full hover:bg-surface-variant"><span class="material-symbols-outlined text-on-surface">close</span></button></div><div class="flex-1 overflow-y-auto px-6 space-y-4 py-4"><div class="flex items-center gap-4 bg-surface-container-low p-3 rounded-xl"><div class="w-16 h-16 rounded-lg bg-cover bg-center" style="background-image: url(&quot;https://www.webstaurantstore.com/images/products/large/68460/907032.jpg&quot;);"></div><div class="flex-1"> <h3 class="font-title-sm text-on-surface">Deluxe Surplus Box</h3> <p class="text-primary font-bold">$4.99</p></div><div class="flex items-center gap-3 bg-surface-container-highest rounded-full px-3 py-1"><button class="w-8 h-8 flex items-center justify-center text-on-surface font-bold text-xl hover:bg-surface-variant rounded-full">-</button> <span class="font-bold w-4 text-center">6</span> <button class="w-8 h-8 flex items-center justify-center text-on-surface font-bold text-xl hover:bg-surface-variant rounded-full">+</button></div></div><div class="space-y-3"><p class="font-label-caps text-on-surface-variant uppercase">Update Pickup Time</p><div class="relative flex justify-center items-center rounded-xl bg-surface-container-low overflow-hidden h-[140px]"><div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-12 bg-primary-container/20 border-y-2 border-primary rounded-lg pointer-events-none z-10 mx-4"></div><div class="flex w-full px-4 text-center h-full relative z-0"><div class="flex-1 flex flex-col justify-center items-center h-full space-y-2 font-headline-md text-lg"><div class="opacity-40">04</div><div class="text-primary text-3xl font-bold">05</div><div class="opacity-40">06</div></div><div class="text-on-surface text-2xl font-bold self-center">:</div><div class="flex-1 flex flex-col justify-center items-center h-full space-y-2 font-headline-md text-lg"><div class="opacity-40">10</div><div class="text-primary text-3xl font-bold">15</div><div class="opacity-40">20</div></div><div class="flex-1 flex flex-col justify-center items-center h-full space-y-2 font-headline-md text-lg"><div class="opacity-40">AM</div><div class="text-primary text-3xl font-bold">PM</div><div class="opacity-40">AM</div></div></div></div></div><div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl"><div class="flex flex-col gap-0.5"> <span class="font-title-sm text-sm">Bring Your Own Container</span> <span class="text-[12px] text-on-surface-variant">Help reduce packaging waste</span></div><div class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary"><span class="inline-block h-4 w-4 translate-x-6 transform rounded-full bg-white transition"></span></div></div><div class="space-y-2"><label class="font-label-caps text-on-surface-variant uppercase">Special Instructions</label><textarea class="w-full rounded-xl border-surface-variant bg-surface-container-low focus:ring-primary focus:border-primary p-3 h-20" placeholder="Any dietary notes or requests?" data-stitch-orig-opacity="0">Please no nuts, thank you!</textarea></div><div class="space-y-3"><p class="font-label-caps text-on-surface-variant uppercase">Adjust Tip</p><div class="flex flex-wrap gap-2"><button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-bold text-sm hover:bg-primary-container transition-colors">$1</button><button class="px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-bold text-sm">$2</button><button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-bold text-sm hover:bg-primary-container transition-colors">$5</button><button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-bold text-sm hover:bg-primary-container transition-colors">$10</button><button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-bold text-sm hover:bg-primary-container transition-colors">Custom</button></div></div></div><div class="px-6 pb-8 pt-4 bg-surface-container-lowest shrink-0"><button class="w-full bg-[#FFD300] text-[#1a1c1c] font-bold text-title-sm py-4 rounded-[16px] shadow-lg hover:opacity-90 active:scale-[0.98] transition-all uppercase tracking-wider">Save Changes</button></div></div></div>
+
+</body></html>

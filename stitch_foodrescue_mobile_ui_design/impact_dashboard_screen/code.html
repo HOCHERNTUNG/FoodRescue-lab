@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="en" style="width: 390px; height: 1952px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FoodRescue - Impact Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary-container": "#7b5700",
+                "surface-dim": "#dadada",
+                "on-primary-fixed-variant": "#554500",
+                "outline-variant": "#d0c6ab",
+                "inverse-primary": "#ecc300",
+                "surface-tint": "#715c00",
+                "surface-container-highest": "#e2e2e2",
+                "secondary-container": "#e4e2e1",
+                "on-surface-variant": "#4d4632",
+                "tertiary": "#7c5800",
+                "on-primary-container": "#705b00",
+                "tertiary-fixed": "#ffdea8",
+                "on-secondary-container": "#656464",
+                "on-background": "#1a1c1c",
+                "surface-variant": "#e2e2e2",
+                "outline": "#7f775f",
+                "on-tertiary-fixed": "#271900",
+                "error": "#ba1a1a",
+                "surface": "#f9f9f9",
+                "surface-container-high": "#e8e8e8",
+                "primary": "#715c00",
+                "on-tertiary": "#ffffff",
+                "background": "#f9f9f9",
+                "primary-container": "#ffd300",
+                "primary-fixed-dim": "#ecc300",
+                "on-secondary-fixed": "#1b1c1c",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#231b00",
+                "on-secondary-fixed-variant": "#474747",
+                "tertiary-container": "#ffd07c",
+                "on-error-container": "#93000a",
+                "secondary-fixed": "#e4e2e1",
+                "tertiary-fixed-dim": "#ffba20",
+                "surface-container": "#eeeeee",
+                "primary-fixed": "#ffe17a",
+                "on-primary": "#ffffff",
+                "surface-bright": "#f9f9f9",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f3f3f3",
+                "secondary": "#5f5e5e",
+                "inverse-on-surface": "#f1f1f1",
+                "on-tertiary-fixed-variant": "#5e4200",
+                "secondary-fixed-dim": "#c8c6c6",
+                "on-surface": "#1a1c1c",
+                "inverse-surface": "#2f3131",
+                "on-secondary": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "stack-gap": "16px",
+                "inline-gutter": "12px",
+                "section-padding": "32px",
+                "container-margin": "24px"
+        },
+        "fontFamily": {
+                "label-caps": [
+                        "Work Sans"
+                ],
+                "body-md": [
+                        "Work Sans"
+                ],
+                "title-sm": [
+                        "Work Sans"
+                ],
+                "display-lg": [
+                        "Epilogue"
+                ],
+                "headline-md": [
+                        "Epilogue"
+                ],
+                "body-lg": [
+                        "Work Sans"
+                ]
+        },
+        "fontSize": {
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "34px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-20 pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-zinc-950 border-b-2 border-zinc-100 dark:border-zinc-800 flat no shadows flex justify-between items-center px-6 py-4 w-full">
+<button class="text-zinc-500 dark:text-zinc-400 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center rounded-full"><img alt="Calendar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyKLf2CsKssbCX5UIlYrIBAKDyzDd-n-7AY5EHGx_1WG1TPHUZIKFQaS9nDdEeERi9Biuok2PZ7irPAQCDYkIETZgeDJVFgb_r1L-Kul4yi4-SkkFiEpVRSR-9Y9GnCeCYzOsUpMrQMrpnrITyIi31K5tvKXAxcHMa3lHaBNELi5OXd3qv3zXtohMYWdLwU6c9sH_BiTdccU7w5turS4w1-iMin56MdYFPNMdzwIUyfWcFtPZShzhXE46r6XTgbIkEhOAiJut5P1Y"></button>
+<div class="text-yellow-400 dark:text-yellow-400 font-['Epilogue'] font-bold tracking-tight text-xl font-black text-zinc-900 dark:text-white uppercase italic">
+            FoodRescue
+        </div>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-700 flex-shrink-0 active:scale-95 transition-transform"><img alt="Profile Avatar" class="w-full h-full object-cover" src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg"></button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-container-margin py-stack-gap flex flex-col gap-[32px] max-w-3xl mx-auto w-full">
+<!-- Dashboard Header -->
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Impact Dashboard</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Track your personalised contribution to reducing food waste.</p>
+</div>
+<!-- Eco-Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-stack-gap"><div class="col-span-2 flex justify-between items-center mb-2"><h2 class="font-headline-md text-headline-md text-on-surface">Your Metrics</h2><button class="flex items-center gap-2 px-4 py-2 rounded-full font-label-caps text-label-caps uppercase hover:opacity-90 active:scale-95 transition-all shadow-sm" style="background-color: rgb(255, 211, 0); color: rgb(26, 28, 28);"><span class="material-symbols-outlined text-[18px]">flag</span>edit Goal</button></div>
+<!-- Primary Metrics Row 1 -->
+<div class="col-span-2 grid grid-cols-2 gap-stack-gap">
+<!-- Meals Saved Card -->
+<div class="bg-surface-container-lowest rounded-[16px] p-stack-gap shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center relative overflow-hidden h-48 border border-outline-variant/30">
+<div class="absolute top-4 left-4 text-primary">
+<span class="material-symbols-outlined text-[24px]" data-icon="restaurant">restaurant</span>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center mb-3"><svg class="w-full h-full transform -rotate-90 absolute top-0 left-0" viewBox="0 0 100 100"><circle class="text-surface-variant" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="8"></circle><circle class="text-primary-container drop-shadow-md stroke-current" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="62.8" stroke-linecap="round" stroke-width="8"></circle></svg><div class="bg-surface-container-high/60 backdrop-blur-sm rounded-full w-14 h-14 flex items-center justify-center z-10"><span class="font-display-lg text-display-lg text-on-surface">42</span></div></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-center">Meals<br>Saved</h3>
+</div>
+<!-- Total Weight Card -->
+<div class="bg-surface-container-lowest rounded-[16px] p-stack-gap shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center relative overflow-hidden h-48 border border-outline-variant/30">
+<div class="absolute top-4 left-4 text-primary">
+<span class="material-symbols-outlined text-[24px]" data-icon="scale">scale</span>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center mb-3"><svg class="w-full h-full transform -rotate-90 absolute top-0 left-0" viewBox="0 0 100 100"><circle class="text-surface-variant" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="8"></circle><circle class="text-primary-container drop-shadow-md stroke-current" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="100.48" stroke-linecap="round" stroke-width="8"></circle></svg><div class="bg-surface-container-high/60 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center z-10"><span class="font-display-lg text-[28px] text-on-surface"><span class="text-sm"><span style="font-size: 28px;" class="">120</span>kg</span></span></div></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-center">Total<br>Weight</h3>
+</div>
+</div>
+<!-- Secondary Metrics Row 2 -->
+<div class="col-span-2 bg-surface-container-lowest rounded-[16px] p-stack-gap shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-outline-variant/30 flex flex-col gap-4"><h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Environmental Impact</h3><div class="grid grid-cols-2 gap-4"><div class="bg-[#f3f4f6] rounded-xl p-3 flex items-center gap-3 border border-zinc-200 flex-1"><div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-zinc-600 flex-shrink-0 shadow-sm"><span class="material-symbols-outlined text-[24px]">co2</span></div><div class="flex-1"><h3 class="font-label-caps text-[10px] text-zinc-500 uppercase tracking-wider">CO2 Reduced</h3><span class="font-title-sm text-title-sm text-on-surface block">1.2kg</span></div></div><div class="bg-[#eff6ff] rounded-xl p-3 flex items-center gap-3 border border-blue-100 flex-1"><div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-blue-600 flex-shrink-0 shadow-sm"><span class="material-symbols-outlined text-[24px]">water_drop</span></div><div class="flex-1"><h3 class="font-label-caps text-[10px] text-blue-500 uppercase tracking-wider">Water Saved</h3><span class="font-title-sm text-title-sm text-on-surface block">12L</span></div></div></div></div>
+</section>
+<!-- Monthly Savings Graph -->
+<section class="flex flex-col gap-stack-gap mt-4">
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Monthly Savings</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-variant px-3 py-1 rounded-full">2025</span>
+</div>
+<div class="bg-surface-container-lowest rounded-[16px] p-stack-gap shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-outline-variant/30">
+<div class="h-40 flex items-end justify-between gap-3"><div class="flex flex-col items-center justify-end h-full gap-2 w-full">
+<span class="font-label-caps text-[10px] font-bold text-on-surface-variant">$12</span>
+<div class="w-full bg-primary-container/30 rounded-t-[8px] h-[30%] hover:bg-primary-container transition-colors"></div>
+</div>
+<div class="flex flex-col items-center justify-end h-full gap-2 w-full">
+<span class="font-label-caps text-[10px] font-bold text-on-surface-variant">$18</span>
+<div class="w-full bg-primary-container/30 rounded-t-[8px] h-[45%] hover:bg-primary-container transition-colors"></div>
+</div>
+<div class="flex flex-col items-center justify-end h-full gap-2 w-full">
+<span class="font-label-caps text-[10px] font-bold text-on-surface-variant">$10</span>
+<div class="w-full bg-primary-container/30 rounded-t-[8px] h-[25%] hover:bg-primary-container transition-colors"></div>
+</div>
+<div class="flex flex-col items-center justify-end h-full gap-2 w-full">
+<span class="font-label-caps text-[10px] font-bold text-on-surface-variant">$22</span>
+<div class="w-full bg-primary-container/30 rounded-t-[8px] h-[55%] hover:bg-primary-container transition-colors"></div>
+</div>
+<div class="flex flex-col items-center justify-end h-full gap-2 w-full">
+<span class="font-label-caps text-[10px] font-bold text-on-surface-variant">$25</span>
+<div class="w-full bg-primary-container/60 rounded-t-[8px] h-[65%] hover:bg-primary-container transition-colors"></div>
+</div>
+<div class="flex flex-col items-center justify-end h-full gap-2 w-full">
+<span class="font-label-caps text-[10px] font-bold text-on-surface-variant">$32</span>
+<div class="w-full bg-primary-container rounded-t-[8px] h-[85%] shadow-[0_0_10px_rgba(255,211,0,0.3)]"></div>
+</div></div>
+<div class="flex justify-between mt-4 font-label-caps text-label-caps text-on-surface-variant">
+<span class="">Jan</span><span class="">Feb</span><span class="">Mar</span><span class="">Apr</span><span class="">May</span><span class="text-on-surface font-bold">Jun</span>
+</div>
+</div>
+</section>
+<!-- Community Leaderboard Snippet -->
+<section class="flex flex-col gap-stack-gap mt-4">
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Community Leaderboard</h2>
+<button class="text-primary font-label-caps text-label-caps hover:underline uppercase">View All</button>
+</div>
+<div class="bg-surface-container-lowest rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col gap-2 border border-outline-variant/30">
+<div class="flex items-center justify-between p-2 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="font-title-sm text-title-sm text-on-surface-variant w-4 text-center">1</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-bold text-xs">AD</div>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Alex D.</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface">340 Meals</span>
+</div>
+<div class="flex items-center justify-between bg-primary-container/10 p-2 rounded-lg border border-primary-container/30">
+<div class="flex items-center gap-3">
+<span class="font-title-sm text-title-sm text-primary w-4 text-center">2</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant border-2 border-primary-container">
+<img alt="Your Avatar" class="w-full h-full object-cover" src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg">
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-bold">You</span>
+</div>
+<span class="font-title-sm text-title-sm text-primary font-bold">42 Meals</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="font-title-sm text-title-sm text-on-surface-variant w-4 text-center">3</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-bold text-xs">SR</div>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Sam R.</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface">28 Meals</span>
+</div>
+</div>
+</section>
+<!-- Recent Rescues List -->
+<section class="flex flex-col gap-stack-gap mt-4">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Recent Rescues</h2>
+<div class="flex flex-col gap-4">
+<!-- Rescue Item 1 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-4 border border-outline-variant/30 transition-transform active:scale-[0.98]">
+<div class="w-16 h-16 rounded-[12px] overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="Bakery Rescue" class="w-full h-full object-cover" data-alt="A brightly lit close-up of a rustic, artisan bakery box filled with assorted pastries. The setting is clean and modern, lit by soft, high-key white light emphasizing freshness. The color palette features warm golden browns of the pastries against a pristine white background, conveying a premium, high-contrast, organized aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvsOjs2QAA1RbImApJPDy7OwLzvJRhh6WJtI_xGGbGbIWptXV7fG0Nsvq6wJdFWfSDy4JbAWBCXlJjpIgK7XpIPtJtAdnFAYLFV4KPKwWllgStzJpYPqgDHmBX_v9IcnIsUI793MW082ozPXSpo_txGAv0rlhiH1OiUQ3en1-OzoTSX2AtA3IO6S58m5e6v8O2UPGlIrAe4IlxurOnO7-XK5V0uQPJe0LCrsYJRArmsKFWwKbfRwhZqX_YMhKxfhCYWRqsmt7Xf3o">
+</div>
+<div class="flex-grow">
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Downtown Bakery Box</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1 mt-0.5">Today, 2:30 PM</p>
+</div>
+<div class="flex flex-col items-end flex-shrink-0">
+<span class="font-title-sm text-title-sm text-primary">+3 Meals</span>
+<span class="material-symbols-outlined text-secondary text-[18px] mt-1" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Rescue Item 2 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-4 border border-outline-variant/30 transition-transform active:scale-[0.98]">
+<div class="w-16 h-16 rounded-[12px] overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="Produce Rescue" class="w-full h-full object-cover" data-alt="A neatly arranged box of vibrant, fresh, but slightly imperfect organic vegetables on a clean, stark white surface. The lighting is bright, even, and high-key, creating sharp contrasts and a modern, minimalistic look. Bold greens and reds pop against the neutral background, fitting a highly organized, high-energy food rescue mission." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSzXCr_HRRYhk-nyP1uzwVum2g_xgCcKp58Kk7f2yzWkMN167V9sEZeP1OO9BT5nMZLKreKGJAKWIsmkA-3BpmV5TE6f-VdB7Ny1TDKx3tVZbzOrx82j7r7V_dw27Cxf8oZmxt3d8p6Vc_oVevGViJtx4YYq0Uf41PfJSN4v0wpptx8vXpiel8BYHhn0d5EejWIBDkxlL4WSy03Cy4YBKfGoiutIC1mJcm5EyFDT9JpLaQFA4iWLjBa3RxGVLW7Q8Co-hP4LnCNQ8">
+</div>
+<div class="flex-grow">
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Fresh Greens Market</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1 mt-0.5">Yesterday, 5:15 PM</p>
+</div>
+<div class="flex flex-col items-end flex-shrink-0">
+<span class="font-title-sm text-title-sm text-primary">+5 Meals</span>
+<span class="material-symbols-outlined text-secondary text-[18px] mt-1" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Rescue Item 3 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-4 border border-outline-variant/30 transition-transform active:scale-[0.98]">
+<div class="w-16 h-16 rounded-[12px] overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="Grocery Rescue" class="w-full h-full object-cover" data-alt="A sleek, modern composition of packaged dry goods and pantry staples arranged meticulously on a pure white table. The scene is brightly lit with high contrast, minimal shadows, and a clean corporate aesthetic. The focus is on order and efficiency, representing an organized logistics operation in a bright, optimistic light-mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkmrLnkgD1NZneUvMuL-RE05FB_CCcSDd_egsRXJ1UZQFz4qhWdZ5HuoCK9he1s7A8L0Z41qZl9ooqdfZ2m9QBWelHmdTtcVzV3yy9Eg65Vyhq2QvKSrimWNSZFlNskFrvpaMnbjNWVDIE8MYb6Xcl39AVAVhCDd_lXGw1HRAgOlY_m0FnYjpQRWQYJlWl56N0P5ScFNULv-ccCZCuZJiNkrY1WD8MzlFrEQ80khRrijhRCia83xK1De3rkUSZI-fVJJIEzS3YEjw">
+</div>
+<div class="flex-grow">
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Corner Grocer Staples</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1 mt-0.5">Oct 12, 11:00 AM</p>
+</div>
+<div class="flex flex-col items-end flex-shrink-0">
+<span class="font-title-sm text-title-sm text-primary">+2 Meals</span>
+<span class="material-symbols-outlined text-secondary text-[18px] mt-1" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full bg-surface-container-high text-on-surface font-label-caps text-label-caps uppercase tracking-wider py-4 rounded-[16px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+                View Full History
+                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl bg-white dark:bg-zinc-950 border-t-2 border-zinc-100 dark:border-zinc-800 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 md:hidden block">
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="home">home</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="search">search</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Explore</span>
+</button>
+<!-- Active Tab: Impact -->
+<button class="flex flex-col items-center justify-center text-yellow-500 dark:text-yellow-400 bg-zinc-50 dark:bg-zinc-900 rounded-xl px-3 py-1 hover:text-yellow-500 transition-colors active:scale-90 duration-200 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="eco" style="font-variation-settings: &quot;FILL&quot; 1;">eco</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Impact</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="person">person</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Profile</span>
+</button>
+</nav>
+<!-- Spacer to ensure content doesn't hide behind nav on desktop if we were showing it -->
+<div class="h-0 md:h-8"></div>
+
+
+
+
+
+
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

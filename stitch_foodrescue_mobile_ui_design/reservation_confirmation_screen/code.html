@@ -1,0 +1,192 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reservation Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#271900",
+                        "on-tertiary-container": "#7b5700",
+                        "secondary-container": "#e4e2e1",
+                        "secondary": "#5f5e5e",
+                        "on-primary-container": "#705b00",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#7c5800",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#4d4632",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdea8",
+                        "surface-dim": "#dadada",
+                        "tertiary-container": "#ffd07c",
+                        "surface-tint": "#715c00",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#715c00",
+                        "on-secondary-container": "#656464",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "primary-container": "#ffd300",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#554500",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#d0c6ab",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container-low": "#f3f3f3",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "inverse-primary": "#ecc300",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#ecc300",
+                        "on-background": "#1a1c1c",
+                        "outline": "#7f775f",
+                        "surface-container": "#eeeeee",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffe17a",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary-fixed": "#231b00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "32px",
+                        "stack-gap": "16px",
+                        "inline-gutter": "12px",
+                        "container-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "title-sm": ["Work Sans"],
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["34px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md h-screen flex flex-col pt-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-zinc-950 border-b-2 border-zinc-100 dark:border-zinc-800 flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="text-zinc-500 dark:text-zinc-400 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYWF1W_wrTLAxQrfWpnw_KF3Qo_seNZO93O2HJZiGVZ8fFKTAfxlpYyJKY3znbAxRKxNWfA8GI0i8Yr20Y36mmZGJA6uTmlisJXM41MPTWuN6TCA4zyip3AKnm1g1hzavUhwBxmf6Mo_Ady5lnAC2yMNrxzAXsZme4bkB_ZjELSBzxUXs58QsG2ln2jFDhVzPvJ4eOdrCOvF6sHSgI3EChs2soq1wC6wCNey4UB1lc0iAzrOKl8ZJa7OSpLt_OtWvrI-GBQ9ZJ0mg" class="w-8 h-8 object-contain rounded-full" alt="Calendar"></button>
+</div>
+<div class="text-xl font-black text-zinc-900 dark:text-white uppercase italic font-['Epilogue'] tracking-tight">
+            FoodRescue
+        </div>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center"><img src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg" class="w-full h-full object-cover" alt="Profile"></button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-container-margin pb-section-padding text-center">
+<!-- Success Icon & Headline -->
+<div class="mb-section-padding flex flex-col items-center">
+<div class="w-24 h-24 bg-primary-container rounded-full flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+<span class="material-symbols-outlined text-on-primary-container text-6xl" data-icon="check" style="font-variation-settings: &quot;FILL&quot; 1;">check</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Reservation Confirmed!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Your rescue order has been successfully placed and is waiting for you.</p>
+</div>
+<!-- Details Card -->
+<div class="w-full max-w-sm bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-4 mb-stack-gap text-left">
+<div class="flex items-center gap-4 mb-4 pb-4 border-b-2 border-surface-variant">
+<div class="w-16 h-16 rounded-xl bg-surface-variant overflow-hidden shrink-0">
+<img alt="Bakery Items" class="w-full h-full object-cover" data-alt="A close up shot of a generic artisan bakery box filled with fresh pastries. High key lighting, minimal setting, bright modern white background. The image has a clean, energetic aesthetic reflecting a high-contrast minimalist corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6kNyj3_ubElkGq4HDoHM7eP6eZSEDDlRAeylCRazOtmB0Of0scl7CUyf0a-fnMZoWfgp57HS-BjLHp-49kYvzJtUf6z-8Ygu3bgMLPhu1Z_slBfSzSUO1Rk3L20E2ZpUu4DZTLdQ8QLF5WxERQ8ams0veU32vOzB2PKLYwfUJlx9Nu1mq5IaLAZ0rfTCKdHcYRN38cIn9Ku2zwfWhplr418uqqUSCvslT-wRnBK1dafTgeJd_olxbziCG6iRx8eyFl4ySJ7dk4Sw">
+</div>
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface">Artisan Bakery Surplus</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Daily Bread Co.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-1">PICKUP TIME</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Today, 6:15 PM</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-1">ORDER ID</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">#FR-8492-A2C</span>
+</div>
+</div>
+<!-- Simulated QR Code -->
+<div class="bg-surface-bright border-2 border-surface-variant rounded-xl p-4 flex flex-col items-center justify-center mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">SCAN AT PICKUP</span>
+<img alt="QR Code" class="h-[64px] w-auto opacity-100" data-alt="A highly detailed black and white square QR code centered on a crisp white background. Minimalist and functional, perfectly sharp and scannable. The image should have no shadows or styling, just a clean flat digital barcode aesthetic suitable for a high-contrast corporate UI." src="https://lh3.googleusercontent.com/aida/ADBb0uiAGNzFiDw2_w73HN8H7J0xEjpC71QB99a_BZKPH6bnh0KOBMWteigRcEDVWa3EfWcggfIo7jE-g5G6IkIxqCiPc9PAL9o582MhfvdG5apnff4M8n9j0J6BixnlJuYI3hNZsSL9PamXKZNSahRhHFPE97xtEhLCo3e145zr8qmCO8XbpfuCZFHP2D1cFzDkKUWlMlJtHNHuM5Dj-1BTDCukmZNQK2D5u7RDLNzG4OainuVQaIyFLOD_ASbwrWDv5XJwcimlsGNn">
+</div>
+<div class="bg-surface p-4 rounded-xl">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="location_on">location_on</span>
+<div>
+<span class="font-title-sm text-title-sm text-on-surface block mb-1">Location Details</span>
+<p class="font-body-md text-body-md text-on-surface-variant">123 Market Street, Singapore<br>Please enter through the side door near the loading dock.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full max-w-sm flex flex-col gap-4 mt-section-padding"><button class="w-full bg-primary-container text-on-primary-fixed font-title-sm text-title-sm py-4 rounded-[16px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined" data-icon="directions">directions</span>
+                Get Directions
+            </button>
+<button class="w-full border-2 border-on-surface text-on-surface font-title-sm text-title-sm py-4 rounded-[16px] hover:bg-surface-variant active:scale-95 transition-all bg-transparent">
+                Return Home
+            </button>
+<button class="w-full bg-primary-container text-on-primary-fixed font-title-sm text-title-sm py-4 rounded-[16px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                View Reservation
+            </button></div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

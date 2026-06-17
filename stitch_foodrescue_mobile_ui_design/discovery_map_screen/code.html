@@ -1,0 +1,278 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Discovery Map - FoodRescue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#271900",
+                        "on-tertiary-container": "#7b5700",
+                        "secondary-container": "#e4e2e1",
+                        "secondary": "#5f5e5e",
+                        "on-primary-container": "#705b00",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#7c5800",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#4d4632",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdea8",
+                        "surface-dim": "#dadada",
+                        "tertiary-container": "#ffd07c",
+                        "surface-tint": "#715c00",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#715c00",
+                        "on-secondary-container": "#656464",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "primary-container": "#ffd300",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#554500",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#d0c6ab",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container-low": "#f3f3f3",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "inverse-primary": "#ecc300",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#ecc300",
+                        "on-background": "#1a1c1c",
+                        "outline": "#7f775f",
+                        "surface-container": "#eeeeee",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffe17a",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary-fixed": "#231b00"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "section-padding": "32px",
+                        "stack-gap": "16px",
+                        "inline-gutter": "12px",
+                        "container-margin": "24px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "title-sm": ["Work Sans"],
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "title-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "display-lg": ["34px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom scrollbar for horizontal carousel */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col relative overflow-hidden h-screen">
+<!-- Map Canvas (Full Screen Background) -->
+<div class="absolute inset-0 z-0 bg-surface-container-lowest">
+<!-- Abstract representation of a map since we can't use an actual interactive map script -->
+<img alt="Dark stylized map background" class="w-full h-full object-cover opacity-80" data-alt="A highly detailed, custom dark-mode styled city map interface viewed from a slightly angled top-down perspective. The map uses a charcoal and deep grey color palette with subtle grid lines representing streets. Bright, glowing 'Cyber-Yellow' map pins are scattered across the urban landscape, indicating active food rescue locations. The lighting is digital and modern, creating a sleek, high-contrast, professional logistics aesthetic." data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHB7v1kUKsvI7Mnu2yQHK4I1Fg71EV2eRciDgfe1zVdnskiaM2o9IwRfb-isYUJrFDiUXqv3dkFqdTEdlMPeqBltW90-qPNrVVCtgnvkY9rGmf77jbfhvvIIm7v0RPcq6wQVZcp0jErKt5ZWY40YNY6083IdzSJp6iOO-ZqWcdkcd3RLheQrUjeGydZrC6Hxrt_s0pc996b5ChIrHwiQV_Sz-bo9x7l0hJMBgqaL4TTQffrqqzQRgCx_pwYIczQRKMwH8G6gQYqyY">
+<!-- Custom Map Pins (Absolute positioning over the map) -->
+<div class="absolute top-[30%] left-[20%] flex flex-col items-center transform hover:scale-110 transition-transform cursor-pointer">
+<div class="bg-primary-container text-on-primary-fixed rounded-full p-2 shadow-[0_4px_20px_rgba(255,211,0,0.4)]">
+<span class="material-symbols-outlined fill text-[20px]">bakery_dining</span>
+</div>
+<div class="w-0 h-0 border-l-[8px] border-r-[8px] border-t-[10px] border-l-transparent border-r-transparent border-t-primary-container -mt-1"></div>
+</div>
+<div class="absolute top-[45%] left-[60%] flex flex-col items-center transform hover:scale-110 transition-transform cursor-pointer"><div class="bg-primary-container text-on-primary-fixed rounded-full p-2 shadow-[0_4px_20px_rgba(255,211,0,0.4)]"><span class="material-symbols-outlined fill text-[20px]">nutrition</span></div><div class="w-0 h-0 border-l-[8px] border-r-[8px] border-t-[10px] border-l-transparent border-r-transparent border-t-primary-container -mt-1"></div></div>
+<div class="absolute top-[60%] left-[35%] flex flex-col items-center transform hover:scale-110 transition-transform cursor-pointer z-10">
+<div class="bg-primary-container text-on-primary-fixed rounded-full p-3 shadow-[0_4px_20px_rgba(255,211,0,0.6)] border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined fill text-[24px]">local_cafe</span>
+</div>
+<div class="w-0 h-0 border-l-[10px] border-r-[10px] border-t-[12px] border-l-transparent border-r-transparent border-t-primary-container -mt-1"></div>
+<div class="mt-1 bg-surface-container-lowest text-on-surface font-label-caps text-label-caps px-2 py-1 rounded-md shadow-sm">Selected</div>
+</div>
+</div>
+<!-- Top Area: Search & Controls -->
+<div class="relative z-20 pt-8 px-container-margin w-full">
+<!-- Search Bar -->
+<div class="flex items-center gap-inline-gutter w-full"><!-- List View Toggle (Now on Left) -->
+<button class="bg-surface-container-lowest rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.06)] overflow-hidden flex items-center justify-center border-2 border-transparent w-8 h-8">
+<img alt="Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBItAZcTFPIkZ2-7HDDg38MZ3PzXjSMjsL7EmgtEzBcT31UZRwQ6Tdn8Ip_qmCe5SKM8ch0rIY6Vui2jwGtfHF9CgLMWJPaSsdeWw2XJc25H4eD_6tlQUYnTHlDRN5m7Y-wEIE5jrlx07DdWLDrVmaIcS1O88iMgcX_evcB9eBRfl6BcoJUnl0wq-lgkeSRVsbWpIbbsvQen_nugPV5QciFwBdKbyPMCczRXvqu6Beh0XojHtjHyfEKiQ0YXvGKL0SF9BPGbFwvrGU">
+</button>
+<!-- Search Bar (Now on Right) -->
+<div class="flex-1 bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center px-4 border-2 border-transparent focus-within:border-primary-container transition-colors py-2">
+<span class="material-symbols-outlined text-secondary mr-3">search</span>
+<input class="flex-1 bg-transparent border-none outline-none text-on-surface font-body-lg text-body-lg placeholder:text-secondary p-0 focus:ring-0" placeholder="Search areas or food types..." type="text">
+</div></div>
+<!-- Filter Pills -->
+<div class="flex gap-3 mt-stack-gap overflow-x-auto hide-scrollbar pb-2">
+<button class="shrink-0 bg-inverse-surface text-on-secondary font-label-caps text-label-caps px-4 py-2 rounded-[16px] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+                Filters
+            </button>
+<button class="shrink-0 bg-surface-container-lowest text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-2 border-2 border-primary-container"><span class="material-symbols-outlined text-primary-container text-[16px] fill">bakery_dining</span>Bakery</button>
+<button class="shrink-0 bg-surface-container-lowest text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-2 border-2 border-primary-container"><span class="material-symbols-outlined text-primary-container text-[16px] fill">nutrition</span>Produce</button>
+<button class="shrink-0 bg-surface-container-lowest text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-2 border-2 border-transparent">
+<span class="material-symbols-outlined text-secondary text-[16px]">calendar_today</span>
+                Prepared
+            </button>
+</div>
+</div>
+<!-- Bottom Area: Carousel & Nav -->
+<div class="relative z-20 mt-auto w-full pb-[100px]"> <!-- Extra padding for fixed bottom nav -->
+<!-- Location Context Indicator -->
+<div class="px-container-margin mb-4 flex justify-end">
+<button class="bg-surface-container-lowest rounded-full p-3 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center justify-center text-on-surface w-10 h-10">
+<span class="material-symbols-outlined text-[24px]">my_location</span>
+</button>
+</div>
+<!-- Horizontal Scrolling Carousel of Cards -->
+<div class="flex overflow-x-auto gap-stack-gap px-container-margin pb-4 hide-scrollbar snap-x">
+<!-- Card 1 (Active/Selected) -->
+<div class="shrink-0 w-[280px] bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.1)] overflow-hidden snap-center border-2 border-primary-container flex flex-col">
+<div class="h-[120px] relative">
+<img alt="Bakery Items" class="w-full h-full object-cover" data-alt="A vibrant, high-contrast photograph of assorted fresh artisan pastries and breads displayed in a clean, modern bakery setting. The items are brightly lit with natural sunlight creating soft shadows. The overall aesthetic is warm and inviting, fitting within a bright, modern corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4ywqFb3lfTXGT_bJQNyaHPv_PxNgZPtDd2z2vfKQESsF94el-0NMQ0GSZsqgqgAj_mBgWsbMzVMMj9mq6oD_C6RAbfwB04lLGC9wImL9I8-HiFJsyQS5px3hvfK2fz_VewHcZEXa-NRXA2ktluB4JvLsiH4ZnIOuzNJhymjb87ODKDUIYhATMIAD4ziRDAO3whQhuf3w78xQOFx3scIzcSPuZxqKWE9veROLIfXTb5By_8lxjv1a7MCi24l_tef6mKo_baUyCyFU">
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-primary-container fill text-[14px]">bolt</span>
+<span class="font-label-caps text-label-caps text-on-surface">5PM - 6PM Pickup</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Sunrise Artisan Bakery</h3>
+<div class="bg-surface-container rounded-md px-2 py-0.5 flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-secondary text-[12px]">location_on</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">0.2 km</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Assorted day-old breads, bagels, and savory pastries ready for immediate pickup.</p>
+<div class="mt-auto pt-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-primary bg-primary-container/20 px-2 py-1 rounded-md">8 Items Left</span>
+<button class="bg-primary-container text-on-primary-fixed font-title-sm text-title-sm px-4 py-2 rounded-[16px] hover:bg-primary-fixed transition-colors">Reserve</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="shrink-0 w-[280px] bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] overflow-hidden snap-center flex flex-col border-2 border-transparent opacity-90 hover:opacity-100 transition-opacity">
+<div class="h-[120px] relative bg-surface-container">
+<img alt="Artisanal Cupcakes" class="w-full h-full object-cover" data-alt="A clean, minimalist photograph of fresh, colorful vegetables and fruits arranged neatly in crates. The scene is brightly lit, emphasizing the vivid greens, reds, and yellows of the produce against a neutral, light-mode background. The aesthetic is crisp, organized, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMvCkIBmudKxTXpleT_zTKcjjBQLvi4CTdg7CNgh8eVKLah0mtMhYOslZoXzYXV7dnj6xXeUM7EqOuYZeUEwApRY5IgupRVkRnV6spUNZTDa_lRCtoLa0A3-bT8ylWrjoLpSSO2mdHLYI1TfdOGOzoCMckIi3pp0IW0OUop5m-emP7TG0rEEFZHF7SHc_CFnVMJ5cMzU8g2ezqbVyDUUjNoaKVguB-y86LxHv4RJddaApYnWlVknv5o_4PyqpzR402Mpyfi_IfAZI">
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[14px]">schedule</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Closes 7PM</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Sweet Tooth Treats</h3>
+<div class="bg-surface-container rounded-md px-2 py-0.5 flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-secondary text-[12px]">location_on</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">0.8m</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">A delicious variety of freshly baked cupcakes with artisanal toppings.</p>
+<div class="mt-auto pt-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-2 py-1 rounded-md">3 Items Left</span>
+<button class="bg-inverse-surface text-on-secondary font-title-sm text-title-sm px-4 py-2 rounded-[16px] hover:bg-on-surface transition-colors">View</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="shrink-0 w-[280px] bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] overflow-hidden snap-center flex flex-col border-2 border-transparent opacity-90 hover:opacity-100 transition-opacity">
+<div class="h-[120px] relative bg-surface-container">
+<div class="w-full h-full flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[48px] opacity-50">restaurant</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">City Bites Deli</h3>
+<div class="bg-surface-container rounded-md px-2 py-0.5 flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-secondary text-[12px]">location_on</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">1.2m</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Pre-packaged salads and sandwiches from today's lunch rush.</p>
+<div class="mt-auto pt-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-2 py-1 rounded-md">12 Meals Left</span>
+<button class="bg-inverse-surface text-on-secondary font-title-sm text-title-sm px-4 py-2 rounded-[16px] hover:bg-on-surface transition-colors">View</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Generated from JSON, 'Explore' is Active based on intent) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[16px] bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.06)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-colors active:scale-90 duration-200 gap-1 w-16" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Home</span>
+</a>
+<!-- Explore (Active) -->
+<a class="flex flex-col items-center justify-center text-primary-container bg-surface-container rounded-xl px-3 py-1 hover:opacity-80 transition-opacity active:scale-90 duration-200 gap-1 w-20" href="#">
+<span class="material-symbols-outlined text-[24px] fill">search</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Explore</span>
+</a>
+<!-- Impact -->
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-colors active:scale-90 duration-200 gap-1 w-16" href="#">
+<span class="material-symbols-outlined text-[24px]">eco</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Impact</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-colors active:scale-90 duration-200 gap-1 w-16" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+
+
+
+
+
+
+</body></html>
