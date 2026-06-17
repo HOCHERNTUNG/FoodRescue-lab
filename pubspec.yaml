@@ -27,9 +27,28 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
 dependencies:
   flutter:
     sdk: flutter
+
+  # Architecture Layer (State Separation Required by Rubric)
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.3
+
+  # Database & Advanced Auth Layer (Single Firebase Project Instance)
+  firebase_core: ^3.1.1
+  firebase_auth: ^5.1.1
+  cloud_firestore: ^5.0.1
+  google_sign_in: ^6.2.1
+
+  # Applied AI Feature (Part 3 Lifecycle Processing Engine)
+  google_generative_ai: ^0.4.0
+
+  # Mapping Layer (Syllabus-Compliant Open-Source Map)
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+  geolocator: ^12.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
