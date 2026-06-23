@@ -29,6 +29,7 @@ final reservationRepositoryProvider = Provider<ReservationRepository>((ref) {
 });
 
 
+
 /// --- Reactive State Streaming Layer ---
 
 /// FoodItems Stream Provider.
@@ -61,10 +62,23 @@ class ReservationsController extends StateNotifier<AsyncValue<void>> {
 
   ReservationsController(this._repository) : super(const AsyncData(null));
 
-  /// CREATE: Book a food item.
-  Future<bool> reserveItem(FoodItem item, int quantity) async {
+  /// CREATE: Book a food item with extended fields.
+  Future<Reservation?> reserveItem(
+    FoodItem item,
+    int quantity, {
+    String scheduledTime = '',
+    bool bringOwnContainer = false,
+    String pickupNotes = '',
+    double tipAmount = 0.0,
+  }) async {
     state = const AsyncLoading();
     try {
+      final double amountPaid = (item.discountedPrice * quantity) + tipAmount;
+      final double weightSavedKg = quantity * 0.45; // 0.45 kg per portion
+      final double co2ReducedKg = weightSavedKg * 1.8; // 1.8 kg CO2 per kg saved
+      final double waterSavedLiter = quantity * 3.0; // 3.0 Litres per portion
+      final double financialSavings = (item.originalPrice - item.discountedPrice) * quantity;
+
       final reservation = Reservation(
         id: 'res_${DateTime.now().millisecondsSinceEpoch}',
         foodItemId: item.id,
@@ -73,13 +87,23 @@ class ReservationsController extends StateNotifier<AsyncValue<void>> {
         status: 'pending',
         reservedAt: DateTime.now(),
         pickupCode: 'FR-${1000 + (DateTime.now().millisecondsSinceEpoch % 9000)}',
+        scheduledTime: scheduledTime,
+        bringOwnContainer: bringOwnContainer,
+        pickupNotes: pickupNotes,
+        tipAmount: tipAmount,
+        amountPaid: amountPaid,
+        weightSavedKg: weightSavedKg,
+        co2ReducedKg: co2ReducedKg,
+        waterSavedLiter: waterSavedLiter,
+        financialSavings: financialSavings,
+        aiMessage: 'Your rescue from ${item.businessName} will save ${weightSavedKg.toStringAsFixed(2)} kg of food, offsetting ${co2ReducedKg.toStringAsFixed(2)} kg of landfill CO2.',
       );
       await _repository.createReservation(reservation);
       state = const AsyncData(null);
-      return true;
+      return reservation;
     } catch (e, stackTrace) {
       state = AsyncError(e, stackTrace);
-      return false;
+      return null;
     }
   }
 
@@ -88,6 +112,17 @@ class ReservationsController extends StateNotifier<AsyncValue<void>> {
     state = const AsyncLoading();
     try {
       await _repository.updateReservationQuantity(reservationId, newQuantity);
+      state = const AsyncData(null);
+    } catch (e, stackTrace) {
+      state = AsyncError(e, stackTrace);
+    }
+  }
+
+  /// UPDATE: Modify pickup timing for a reservation.
+  Future<void> updatePickupTime(String reservationId, String newTime) async {
+    state = const AsyncLoading();
+    try {
+      await _repository.updateReservationPickupTime(reservationId, newTime);
       state = const AsyncData(null);
     } catch (e, stackTrace) {
       state = AsyncError(e, stackTrace);

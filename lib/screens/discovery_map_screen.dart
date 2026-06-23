@@ -1,17 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../constants/app_colors.dart';
+
 import '../models/food_item.dart';
 import '../providers/providers.dart';
+import 'reservations_screen.dart';
+import 'item_details_screen.dart';
 
-/// Screen 2: Discovery Map Screen.
-/// Design defense context:
-/// - Uses the open-source [flutter_map] library instead of google_maps_flutter.
-/// - Obtains food listing locations in real-time from [foodItemsStreamProvider].
-/// - Displays map pins styled as custom icons indicating business type.
-/// - Selecting a pin opens an elegant details overlay at the bottom with a quick reserve button.
 class DiscoveryMapScreen extends ConsumerStatefulWidget {
   const DiscoveryMapScreen({super.key});
 
@@ -21,371 +19,684 @@ class DiscoveryMapScreen extends ConsumerStatefulWidget {
 
 class _DiscoveryMapScreenState extends ConsumerState<DiscoveryMapScreen> {
   final MapController _mapController = MapController();
-  FoodItem? _selectedItem;
+  late final PageController _pageController;
+  final TextEditingController _searchController = TextEditingController();
+  final LatLng _defaultCenter = const LatLng(1.3521, 103.8198);
 
-  // Set default center point in San Francisco, aligning with mock repository coordinates.
-  final LatLng _sfCenter = const LatLng(37.7749, -122.4194);
+  String _searchQuery = '';
+  String _activeCategory = 'All';
+  int _selectedCardIndex = 0;
+
+  static const List<String> _categoryOptions = [
+    'All',
+    'Bakery',
+    'Produce',
+    'Meals',
+    'Groceries',
+  ];
 
   @override
-  Widget build(BuildContext context) {
-    final foodItemsAsync = ref.watch(foodItemsStreamProvider);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rescue Map Discovery'),
-      ),
-      body: foodItemsAsync.when(
-        data: (items) {
-          final markers = items.map((item) => _buildMarker(item)).toList();
-
-          return Stack(
-            children: [
-              // Open-source Flutter Map.
-              FlutterMap(
-                mapController: _mapController,
-                options: MapOptions(
-                  initialCenter: _sfCenter,
-                  initialZoom: 13.0,
-                  onTap: (_, __) {
-                    setState(() {
-                      _selectedItem = null;
-                    });
-                  },
-                ),
-                children: [
-                  // Open-source OpenStreetMap tiles.
-                  TileLayer(
-                    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.foodrescue.lab',
-                    // Adding dark tint to OpenStreetMap tiles to match our dark theme.
-                    tileBuilder: (context, tileWidget, tile) {
-                      return ColorFiltered(
-                        colorFilter: const ColorFilter.matrix([
-                          -0.2126, -0.7152, -0.0722,  0, 255, // Red
-                          -0.2126, -0.7152, -0.0722,  0, 255, // Green
-                          -0.2126, -0.7152, -0.0722,  0, 255, // Blue
-                            0,       0,       0,      1,   0, // Alpha
-                        ]),
-                        child: tileWidget,
-                      );
-                    },
-                  ),
-                  // Render interactive marker pins.
-                  MarkerLayer(markers: markers),
-                ],
-              ),
-
-              // Selected Listing Bottom Card Overlay.
-              if (_selectedItem != null)
-                Positioned(
-                  left: 16,
-                  right: 16,
-                  bottom: 24,
-                  child: _buildDetailsCard(_selectedItem!),
-                ),
-
-              // Recenter map button.
-              Positioned(
-                right: 16,
-                top: 16,
-                child: FloatingActionButton.small(
-                  backgroundColor: AppColors.surface,
-                  foregroundColor: AppColors.primary,
-                  onPressed: () {
-                    _mapController.move(_sfCenter, 13.0);
-                    setState(() {
-                      _selectedItem = null;
-                    });
-                  },
-                  child: const Icon(Icons.my_location),
-                ),
-              ),
-            ],
-          );
-        },
-        loading: () => const Center(
-          child: CircularProgressIndicator(color: AppColors.primary),
-        ),
-        error: (err, stack) => Center(
-          child: Text('Map Error: $err', style: const TextStyle(color: AppColors.accent)),
-        ),
-      ),
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+      viewportFraction: 0.85,
+      initialPage: _selectedCardIndex,
     );
+    _searchController.addListener(_onSearchChanged);
   }
 
-  /// Builds a customized marker representing a rescue location.
-  Marker _buildMarker(FoodItem item) {
-    final bool isSelected = _selectedItem?.id == item.id;
-    final bool outOfStock = item.quantity <= 0;
-
-    return Marker(
-      point: LatLng(item.latitude, item.longitude),
-      width: isSelected ? 55.0 : 45.0,
-      height: isSelected ? 55.0 : 45.0,
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _selectedItem = item;
-          });
-          _mapController.move(LatLng(item.latitude, item.longitude), 14.0);
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: outOfStock
-                ? AppColors.textSecondary.withOpacity(0.9)
-                : (isSelected ? AppColors.primary : AppColors.secondary),
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white,
-              width: isSelected ? 2.5 : 1.5,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                blurRadius: 6,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Icon(
-            _getCategoryIcon(item.category),
-            color: Colors.white,
-            size: isSelected ? 26.0 : 20.0,
-          ),
-        ),
-      ),
-    );
+  @override
+  void dispose() {
+    _searchController.removeListener(_onSearchChanged);
+    _pageController.dispose();
+    _searchController.dispose();
+    super.dispose();
   }
 
-  /// Map categories to appropriate icons.
-  IconData _getCategoryIcon(String category) {
-    switch (category) {
-      case 'Meals':
-        return Icons.restaurant_menu;
-      case 'Bakery':
-        return Icons.bakery_dining;
-      case 'Groceries':
-        return Icons.local_grocery_store;
-      case 'Produce':
-        return Icons.agriculture;
-      default:
-        return Icons.fastfood;
+  void _onSearchChanged() {
+    setState(() {
+      _searchQuery = _searchController.text.trim();
+      _selectedCardIndex = 0;
+    });
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(0);
     }
   }
 
-  /// Builds the detail popup card for selected items.
-  Widget _buildDetailsCard(FoodItem item) {
-    final bool outOfStock = item.quantity <= 0;
+  List<FoodItem> _filteredFoods(List<FoodItem> items) {
+    final query = _searchQuery.toLowerCase();
+    return items.where((item) {
+      final matchesCategory =
+          _activeCategory == 'All' || item.category == _activeCategory;
+      final matchesSearch =
+          query.isEmpty ||
+          item.name.toLowerCase().contains(query) ||
+          item.businessName.toLowerCase().contains(query) ||
+          item.description.toLowerCase().contains(query);
+      return matchesCategory && matchesSearch;
+    }).toList();
+  }
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+  void _onCategorySelected(String category) {
+    setState(() {
+      _activeCategory = category;
+      _selectedCardIndex = 0;
+    });
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(0);
+    }
+  }
+
+  void _selectStore(int index, List<FoodItem> activeItems) {
+    if (index < 0 || index >= activeItems.length) return;
+    setState(() {
+      _selectedCardIndex = index;
+    });
+    if (_pageController.hasClients) {
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 320),
+        curve: Curves.easeOut,
+      );
+    }
+    _animateMapToLocation(activeItems[index]);
+  }
+
+  Future<void> _animateMapToLocation(FoodItem item) async {
+    final target = LatLng(item.latitude, item.longitude);
+    final start = _mapController.camera.center;
+    const int steps = 15;
+    for (int step = 1; step <= steps; step++) {
+      if (!mounted) return;
+      final progress = step / steps;
+      final easedProgress = Curves.easeInOut.transform(progress);
+      final lat = start.latitude + (target.latitude - start.latitude) * easedProgress;
+      final lng = start.longitude + (target.longitude - start.longitude) * easedProgress;
+      _mapController.move(LatLng(lat, lng), 14.5);
+      await Future.delayed(const Duration(milliseconds: 16));
+    }
+  }
+
+  String _formatDistance(FoodItem item) {
+    final distance = const Distance().as(
+      LengthUnit.Kilometer,
+      _defaultCenter,
+      LatLng(item.latitude, item.longitude),
+    );
+    return '${distance.toStringAsFixed(1)} km';
+  }
+
+  IconData _iconForCategory(String category) {
+    switch (category.toLowerCase()) {
+      case 'bakery':
+        return Icons.bakery_dining;
+      case 'produce':
+        return Icons.eco;
+      case 'cafe':
+      case 'coffee':
+        return Icons.local_cafe;
+      case 'groceries':
+        return Icons.local_grocery_store;
+      default:
+        return Icons.restaurant_menu;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final surfaceColor = colorScheme.surface;
+    final primaryColor = colorScheme.primary;
+    final onSurfaceColor = colorScheme.onSurface;
+    final outlineColor = colorScheme.outline.withOpacity(0.24);
+    final reservationsState = ref.watch(reservationsControllerProvider);
+    final isReserving = reservationsState is AsyncLoading;
+
+    return Scaffold(
+      backgroundColor: colorScheme.background,
+      body: Stack(
+        children: [
+          ref
+              .watch(foodItemsStreamProvider)
+              .when(
+                data: (items) {
+                  final filteredItems = _filteredFoods(items);
+                  if (filteredItems.isNotEmpty &&
+                      _selectedCardIndex >= filteredItems.length) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (!mounted) return;
+                      setState(() {
+                        _selectedCardIndex = 0;
+                      });
+                      if (_pageController.hasClients) {
+                        _pageController.jumpToPage(0);
+                      }
+                    });
+                  }
+
+                  return Stack(
                     children: [
-                      Text(
-                        item.name,
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      FlutterMap(
+                        mapController: _mapController,
+                        options: MapOptions(
+                          initialCenter: _defaultCenter,
+                          initialZoom: 13.5,
+                          minZoom: 11.0,
+                          maxZoom: 18.0,
+                          interactiveFlags: InteractiveFlag.all,
+                        ),
+                        children: [
+                          TileLayer(
+                            urlTemplate:
+                                'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                            subdomains: const ['a', 'b', 'c', 'd'],
+                            userAgentPackageName: 'com.foodrescue.labgh',
+                            tileBuilder: (context, tileWidget, tile) {
+                              return ColorFiltered(
+                                colorFilter: const ColorFilter.matrix([
+                                  0.9,
+                                  0,
+                                  0,
+                                  0,
+                                  15,
+                                  0,
+                                  0.9,
+                                  0,
+                                  0,
+                                  15,
+                                  0,
+                                  0,
+                                  0.95,
+                                  0,
+                                  15,
+                                  0,
+                                  0,
+                                  0,
+                                  1,
+                                  0,
+                                ]),
+                                child: tileWidget,
+                              );
+                            },
+                          ),
+                          MarkerLayer(
+                            markers: filteredItems.asMap().entries.map((entry) {
+                              final index = entry.key;
+                              final item = entry.value;
+                              final isSelected = index == _selectedCardIndex;
+                              return Marker(
+                                point: LatLng(item.latitude, item.longitude),
+                                width: isSelected ? 64 : 52,
+                                height: isSelected ? 84 : 74,
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _selectStore(index, filteredItems),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      AnimatedContainer(
+                                        duration: const Duration(
+                                          milliseconds: 220,
+                                        ),
+                                        padding: EdgeInsets.all(
+                                          isSelected ? 12 : 10,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: isSelected
+                                              ? primaryColor
+                                              : Colors.white,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: isSelected
+                                                ? Colors.white
+                                                : outlineColor,
+                                            width: isSelected ? 3 : 1.5,
+                                          ),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black26,
+                                              blurRadius: 9,
+                                              offset: Offset(0, 4),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Icon(
+                                          _iconForCategory(item.category),
+                                          color: isSelected
+                                              ? Colors.white
+                                              : primaryColor,
+                                          size: isSelected ? 28 : 22,
+                                        ),
+                                      ),
+                                      if (isSelected)
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 6),
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 4,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: surfaceColor,
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                            border: Border.all(
+                                              color: outlineColor,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            'Selected',
+                                            style: TextStyle(
+                                              color: onSurfaceColor,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        item.businessName,
-                        style: const TextStyle(fontSize: 13, color: AppColors.secondary, fontWeight: FontWeight.w500),
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        child: SafeArea(
+                          bottom: false,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 16,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    Material(
+                                      color: surfaceColor,
+                                      shape: const CircleBorder(),
+                                      elevation: 2,
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.calendar_today,
+                                          size: 20,
+                                        ),
+                                        color: onSurfaceColor,
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const ReservationsScreen(),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Container(
+                                        height: 50,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: surfaceColor,
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
+                                          border: Border.all(
+                                            color: outlineColor,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(
+                                                0.06,
+                                              ),
+                                              blurRadius: 16,
+                                              offset: const Offset(0, 6),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.search,
+                                              color: onSurfaceColor.withOpacity(
+                                                0.6,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 10),
+                                            Expanded(
+                                              child: TextField(
+                                                controller: _searchController,
+                                                style: TextStyle(
+                                                  color: onSurfaceColor,
+                                                ),
+                                                decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  hintText:
+                                                      'Search areas or food types...',
+                                                  hintStyle: TextStyle(
+                                                    color: onSurfaceColor
+                                                        .withOpacity(0.55),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Material(
+                                      color: surfaceColor,
+                                      shape: const CircleBorder(),
+                                      elevation: 2,
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.person,
+                                          size: 20,
+                                        ),
+                                        color: onSurfaceColor,
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const BouncingScrollPhysics(),
+                                  child: Row(
+                                    children: [
+                                      _buildFilterPill(
+                                        label: 'Filters',
+                                        color: onSurfaceColor.withOpacity(0.16),
+                                        borderColor: Colors.transparent,
+                                        icon: Icons.tune,
+                                        textColor: onSurfaceColor,
+                                      ),
+                                      const SizedBox(width: 10),
+                                      ..._categoryOptions
+                                          .where(
+                                            (category) => category != 'All',
+                                          )
+                                          .map(
+                                            (category) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                right: 10,
+                                              ),
+                                              child: _buildFilterPill(
+                                                label: category,
+                                                selected:
+                                                    _activeCategory == category,
+                                                onTap: () =>
+                                                    _onCategorySelected(
+                                                      category,
+                                                    ),
+                                                color:
+                                                    _activeCategory == category
+                                                    ? primaryColor
+                                                    : surfaceColor,
+                                                textColor:
+                                                    _activeCategory == category
+                                                    ? Colors.white
+                                                    : onSurfaceColor,
+                                                borderColor: outlineColor,
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
+                      if (filteredItems.isEmpty)
+                        Positioned(
+                          left: 16,
+                          right: 16,
+                          bottom: 20,
+                          child: Container(
+                            height: 190,
+                            decoration: BoxDecoration(
+                              color: surfaceColor,
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(color: outlineColor),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'No listings match your search or selected filter.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: onSurfaceColor.withOpacity(0.75),
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      else
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 20,
+                          child: SizedBox(
+                            height: 190,
+                            child: PageView.builder(
+                              controller: _pageController,
+                              itemCount: filteredItems.length,
+                              onPageChanged: (index) {
+                                _selectStore(index, filteredItems);
+                              },
+                              itemBuilder: (context, index) {
+                                final item = filteredItems[index];
+                                final isSelected = index == _selectedCardIndex;
+                                final distanceLabel = _formatDistance(item);
+
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                    left: index == 0 ? 16 : 8,
+                                    right: index == filteredItems.length - 1
+                                        ? 16
+                                        : 8,
+                                  ),
+                                  child: Card(
+                                    elevation: isSelected ? 6 : 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(22),
+                                    ),
+                                    color: surfaceColor,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  item.businessName,
+                                                  style: TextStyle(
+                                                    color: onSurfaceColor,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w800,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 6,
+                                                    ),
+                                                decoration: BoxDecoration(
+                                                  color: onSurfaceColor
+                                                      .withOpacity(0.08),
+                                                  borderRadius:
+                                                      BorderRadius.circular(14),
+                                                ),
+                                                child: Text(
+                                                  distanceLabel,
+                                                  style: TextStyle(
+                                                    color: onSurfaceColor,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Expanded(
+                                            child: Text(
+                                              item.description,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: onSurfaceColor
+                                                    .withOpacity(0.82),
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'Pickup ${item.pickupWindow} · ${item.quantity} left',
+                                                  style: TextStyle(
+                                                    color: onSurfaceColor
+                                                        .withOpacity(0.7),
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: item.quantity <= 0
+                                                    ? null
+                                                    : () {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (_) => ItemDetailsScreen(item: item),
+                                                          ),
+                                                        );
+                                                      },
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: item.quantity <= 0
+                                                      ? colorScheme.surfaceVariant
+                                                      : const Color(0xFFFFC107),
+                                                  foregroundColor: item.quantity <= 0
+                                                      ? onSurfaceColor.withOpacity(0.5)
+                                                      : Colors.black,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(14),
+                                                  ),
+                                                  elevation: 0,
+                                                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                                                ),
+                                                child: Text(
+                                                  item.quantity <= 0 ? 'Sold Out' : 'Rescue',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                     ],
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.close, size: 20, color: AppColors.textSecondary),
-                  onPressed: () => setState(() => _selectedItem = null),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+                  );
+                },
+                loading: () => Stack(
                   children: [
-                    Text(
-                      '\$${item.discountedPrice.toStringAsFixed(2)}',
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primary),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '\$${item.originalPrice.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: AppColors.textSecondary,
-                        decoration: TextDecoration.lineThrough,
+                    FlutterMap(
+                      mapController: _mapController,
+                      options: MapOptions(
+                        initialCenter: _defaultCenter,
+                        initialZoom: 13.5,
+                        minZoom: 11.0,
+                        maxZoom: 18.0,
                       ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                          subdomains: const ['a', 'b', 'c', 'd'],
+                          userAgentPackageName: 'com.foodrescue.labgh',
+                        ),
+                      ],
                     ),
+                    const Center(child: CircularProgressIndicator()),
                   ],
                 ),
-                Text(
-                  outOfStock ? 'Rescue complete' : '${item.quantity} portions left',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: outOfStock ? AppColors.accent : AppColors.textSecondary,
-                    fontWeight: outOfStock ? FontWeight.bold : FontWeight.normal,
+                error: (error, stack) => Center(
+                  child: Text(
+                    'Map error: $error',
+                    style: TextStyle(color: colorScheme.error),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                const Icon(Icons.access_time, size: 14, color: AppColors.textSecondary),
-                const SizedBox(width: 4),
-                Text(
-                  'Pickup: ${item.pickupWindow}',
-                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
-                ),
-              ],
-            ),
-            const SizedBox(height: 14),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: outOfStock ? null : () => _showQuickReserveSheet(item),
-                child: const Text('Quick Reserve'),
+              ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFilterPill({
+    required String label,
+    bool selected = false,
+    required Color color,
+    required Color textColor,
+    required Color borderColor,
+    IconData? icon,
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: borderColor),
+        ),
+        child: Row(
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 16, color: textColor),
+              const SizedBox(width: 6),
+            ],
+            Text(
+              label,
+              style: TextStyle(
+                color: textColor,
+                fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  /// Opens the reservation sheet from the map view.
-  void _showQuickReserveSheet(FoodItem item) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: AppColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return _QuickReserveSheetContent(item: item);
-      },
-    );
-  }
-}
-
-/// Helper container inside bottom sheet to manage local count.
-class _QuickReserveSheetContent extends ConsumerStatefulWidget {
-  final FoodItem item;
-  const _QuickReserveSheetContent({required this.item});
-
-  @override
-  ConsumerState<_QuickReserveSheetContent> createState() => _QuickReserveSheetContentState();
-}
-
-class _QuickReserveSheetContentState extends ConsumerState<_QuickReserveSheetContent> {
-  int _quantity = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    final controllerState = ref.watch(reservationsControllerProvider);
-    final isLoading = controllerState is AsyncLoading;
-
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.item.name,
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      widget.item.businessName,
-                      style: const TextStyle(fontSize: 14, color: AppColors.secondary),
-                    ),
-                  ],
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.close, color: AppColors.textSecondary),
-                onPressed: () => Navigator.pop(context),
-              )
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Quantity', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.remove_circle_outline),
-                    onPressed: _quantity > 1 ? () => setState(() => _quantity--) : null,
-                  ),
-                  Text('$_quantity', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  IconButton(
-                    icon: const Icon(Icons.add_circle_outline),
-                    onPressed: _quantity < widget.item.quantity ? () => setState(() => _quantity++) : null,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Total Price', style: TextStyle(color: AppColors.textSecondary)),
-              Text(
-                '\$${(widget.item.discountedPrice * _quantity).toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.primary),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: isLoading
-                ? null
-                : () async {
-                    final success = await ref
-                        .read(reservationsControllerProvider.notifier)
-                        .reserveItem(widget.item, _quantity);
-                    if (success && context.mounted) {
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Successfully reserved $_quantity portion(s)!'),
-                          backgroundColor: AppColors.primary,
-                          behavior: SnackBarBehavior.floating,
-                        ),
-                      );
-                    }
-                  },
-            child: isLoading
-                ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                : const Text('Confirm Reservation'),
-          ),
-        ],
       ),
     );
   }

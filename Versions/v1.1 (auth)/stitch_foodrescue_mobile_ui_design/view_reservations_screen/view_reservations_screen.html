@@ -1,0 +1,253 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Reservations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#715c00",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#7c5800",
+                        "primary-container": "#ffd300",
+                        "inverse-surface": "#2f3131",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary-container": "#e4e2e1",
+                        "surface-bright": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#7b5700",
+                        "on-primary-container": "#705b00",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-high": "#e8e8e8",
+                        "outline": "#7f775f",
+                        "on-surface": "#1a1c1c",
+                        "on-surface-variant": "#4d4632",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed": "#ffdea8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ecc300",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary-container": "#656464",
+                        "secondary": "#5f5e5e",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "on-primary-fixed": "#231b00",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffe17a",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#271900",
+                        "tertiary-container": "#ffd07c",
+                        "surface-dim": "#dadada",
+                        "primary": "#715c00",
+                        "inverse-primary": "#ecc300",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-primary-fixed-variant": "#554500",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed": "#e4e2e1",
+                        "outline-variant": "#d0c6ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "32px",
+                        "container-margin": "24px",
+                        "stack-gap": "16px",
+                        "inline-gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"],
+                        "body-md": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "title-sm": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["34px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen pt-[72px] pb-[90px]">
+<!-- TopAppBar from JSON -->
+<header class="bg-white dark:bg-zinc-950 fixed top-0 w-full z-50 border-b-2 border-zinc-100 dark:border-zinc-800 flex justify-between items-center px-6 py-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyKLf2CsKssbCX5UIlYrIBAKDyzDd-n-7AY5EHGx_1WG1TPHUZIKFQaS9nDdEeERi9Biuok2PZ7irPAQCDYkIETZgeDJVFgb_r1L-Kul4yi4-SkkFiEpVRSR-9Y9GnCeCYzOsUpMrQMrpnrITyIi31K5tvKXAxcHMa3lHaBNELi5OXd3qv3zXtohMYWdLwU6c9sH_BiTdccU7w5turS4w1-iMin56MdYFPNMdzwIUyfWcFtPZShzhXE46r6XTgbIkEhOAiJut5P1Y" alt="Calendar" class="w-8 h-8 rounded-full object-cover shadow-sm"></button>
+<span class="font-['Epilogue'] font-bold tracking-tight text-xl font-black text-zinc-900 dark:text-white uppercase italic">FoodRescue</span>
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center"><img src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg" alt="Profile Avatar" class="w-8 h-8 rounded-full shadow-sm"></button>
+</header>
+<main class="px-container-margin py-section-padding flex flex-col gap-section-padding max-w-3xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col gap-2">
+<h1 class="font-headline-md text-headline-md text-on-surface">My Reservations</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Track your upcoming pickups and past food rescues.</p>
+</div>
+<!-- Filter/Tabs (Custom component fitting the style) -->
+<div class="flex gap-4 border-b-2 border-surface-variant pb-2">
+<button class="font-title-sm text-title-sm text-on-surface border-b-4 border-primary-container pb-2 px-2 -mb-[4px]">Active</button>
+<button class="font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface transition-colors pb-2 px-2">Past</button>
+</div>
+<!-- Active Reservations List -->
+<div class="flex flex-col gap-stack-gap">
+<!-- Reservation Card 1 (Active) -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-gap shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col gap-stack-gap relative overflow-hidden group border border-transparent hover:border-primary-container transition-colors duration-300 cursor-pointer">
+<!-- Status Badge -->
+<div class="top-4 right-4 bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-3 py-1 rounded-full z-10 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                    Ready for Pickup
+                </div>
+<div class="flex gap-stack-gap items-start">
+<!-- Shop Image Thumbnail -->
+<div class="w-24 h-24 rounded-lg bg-surface-variant shrink-0 overflow-hidden relative">
+<img alt="Bakery Items" class="w-full h-full object-cover" data-alt="A high-contrast, modern shot of fresh artisan bread and pastries arranged neatly in a bright, white bakery setting. The lighting is crisp and inviting, highlighting the textures of the food against a minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASv0bNG2IvC3JQMOKSx1faP6Rs7oT64rZ3sBfUEP7gQXYS4B9noxhI5VBiP0tXKiroF3SJSamvTB1tIaSMYPC4GQSDGk4fon3aXkK7znNuvqTS5evou8qbjcz3skQmrF0_lfGIUSmyKFvDJJqBYrFrOvjXb66Rcv4IWUA_RJdFB8KtS8LMrVvBSW9fXWa6TYX8Af9jU0b0uS6p0bKEQbOsu45nqqFUrGEZTRQECf7UfR3RwU12SG-UUx09iNfR1l1YOEEDJPtVzoc">
+</div>
+<!-- Details -->
+<div class="flex flex-col gap-1 flex-grow">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">The Daily Loaf</p>
+<h3 class="font-title-sm text-title-sm text-on-surface">Artisan Bakery Box</h3>
+<div class="flex items-center gap-2 mt-2 text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="">Today, 6:15 PM</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">1.2 km away</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="pt-4 border-t border-surface-variant flex justify-between items-center mt-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Order #FR-8924-3B5</span>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface font-title-sm text-title-sm px-6 py-2 rounded-xl transition-colors flex items-center gap-2">
+                        View Details
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Reservation Card 2 (Active) -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-gap shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col gap-stack-gap relative overflow-hidden group border border-transparent hover:border-primary-container transition-colors duration-300 cursor-pointer">
+<!-- Status Badge -->
+<div class="top-4 right-4 bg-surface-variant text-on-surface-variant font-label-caps text-label-caps uppercase px-3 py-1 rounded-full z-10 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                    Confirmed
+                </div>
+<div class="flex gap-stack-gap items-start">
+<!-- Shop Image Thumbnail -->
+<div class="w-24 h-24 rounded-lg bg-surface-variant shrink-0 overflow-hidden relative">
+<img alt="Groceries" class="w-full h-full object-cover" data-alt="A neatly packed brown paper grocery bag filled with fresh, vibrant vegetables and fruits sitting on a clean, light-colored surface. The scene is brightly lit with a clean, high-contrast modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJsDjIihzOeEWQztPgdQzwLzzMNc-SbUF4q9pd-yiZOIcavUJht9mmzN1zJRPppBE9vGvFBqvZ8bPt4ltD7hM3QJpaAkmyHFAIBX4MbOL05tNAMKwXP8Df_C-_P7Dgkg9M9nfv5wCcdjbP71kiKylAT2KQbxzF3vtAi8Qwdrd346isGFuEp9KpwtrL1YL2kccYRaCBzQJaaSF5bJXnToLbjMJRHTAoxadEA2x57R6aOst5XoB9GXfEFBCihLEZ1PxDiAIFaE_7m3Q">
+</div>
+<!-- Details -->
+<div class="flex flex-col gap-1 flex-grow">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Green Market</p>
+<h3 class="font-title-sm text-title-sm text-on-surface">Produce Surprise Bag</h3>
+<div class="flex items-center gap-2 mt-2 text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="">Tomorrow, 9:15 PM</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">3.5 km away</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="pt-4 border-t border-surface-variant flex justify-between items-center mt-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Order #FR-8955-5A3</span>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface font-title-sm text-title-sm px-6 py-2 rounded-xl transition-colors flex items-center gap-2">
+                        View Details
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-zinc-950 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+<!-- Home -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider mt-1">Home</span>
+</button>
+<!-- Explore -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined">search</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider mt-1">Explore</span>
+</button>
+<!-- Impact -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined">eco</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider mt-1">Impact</span>
+</button>
+<!-- Profile (Active State Applied semantically for "My Reservations") -->
+<button class="flex flex-col items-center justify-center rounded-xl hover:text-yellow-500 transition-colors active:scale-90 duration-200 text-zinc-400 dark:text-zinc-600">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider mt-1">Profile</span>
+</button>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

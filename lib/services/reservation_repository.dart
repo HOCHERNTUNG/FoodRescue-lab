@@ -16,6 +16,9 @@ abstract class ReservationRepository {
   /// UPDATE: Change the quantity of items claimed under a reservation.
   Future<void> updateReservationQuantity(String id, int quantity);
 
+  /// UPDATE: Change the scheduled pickup time for a reservation.
+  Future<void> updateReservationPickupTime(String id, String newTime);
+
   /// UPDATE: Mark the reservation status as completed (claimed at the shop).
   Future<void> completeReservation(String id);
 

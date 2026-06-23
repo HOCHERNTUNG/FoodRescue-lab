@@ -1,0 +1,63 @@
+Project Part 2: Basic Application and Authentication
+What Can I Do?
+
+• Create a new Flutter Project for your Assessment with the necessary folders/
+directories
+• In lib folder: models, widgets, screen
+• In root folder: fonts, images
+• Find suitable fonts and images, place them in their respective folders and update
+pubspec.yaml
+• Translate your Figma design into Flutter
+• Create more screens (dart files) for your project
+• Define the routeName and body content for each screen
+• Implement ListView/ GridView for your screens
+• Implement navigation for your project
+• Create model for your project
+• Implement screens that uses form
+• Include input validation and SnackBar for feedback
+• Create a Firebase project
+• Link your Flutter project to Firebase Project
+• Import the Firebase and Flutter Riverpod plugins to your
+project
+• Create the services folder in lib folder
+• Create a service file that communicates to your Firebase
+project
+• Create the providers folder in lib folder
+• Create a provider file for the service created
+• Enable Riverpod and access service in screen
+• Enable Firebase Authentication in your Firebase project
+• Import the Firebase Authentication plugin to your project
+• Implement the authentication functions in your service file
+• In the authentication screens, access authentication
+functions from the service file through the provider.
+• Explore other authentication methods and account
+management features
+• Screenshot the screens from Figma and App (can run on
+either Chrome or Emulator) and complete Word document
+report
+
+
+Project Part 3: Database Operations and Additional Features
+What Can I Do?
+
+• Implement the CRUD functions in your service file
+• Consume the implemented CRUD functions in the respective
+screens
+• Explore on query methods not covered in class
+• Import the ImagePicker and Google ML Kit for Text
+Recognition plugins to your project (if applicable)
+• Implement the camera related features in your project
+(if applicable)
+• Implement one applied AI feature in your project
+• Import http plugin to your project (if applicable)
+• Access publicly available Web Services that are applicable to
+your project through the http package (if applicable)
+• Implement NETS QR (if applicable)
+• Allows you to earn the certification!
+• Implement themes for your project
+• Explore and implement additional features
+• Create or look for suitable image for your app icon and
+splash screen
+• Import the plugin
+• Implement app icon and splash screen for your project
+• Explore and implement additional features

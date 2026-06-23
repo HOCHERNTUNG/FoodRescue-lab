@@ -1,0 +1,317 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FoodRescue - Account Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#ffd300",
+                      "on-background": "#1a1c1c",
+                      "primary": "#715c00",
+                      "on-primary-fixed": "#231b00",
+                      "tertiary-fixed-dim": "#ffba20",
+                      "outline-variant": "#d0c6ab",
+                      "secondary-fixed-dim": "#c8c6c6",
+                      "on-secondary-fixed-variant": "#474747",
+                      "background": "#f9f9f9",
+                      "surface-container": "#eeeeee",
+                      "inverse-on-surface": "#f1f1f1",
+                      "surface-variant": "#e2e2e2",
+                      "primary-fixed": "#ffe17a",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#554500",
+                      "surface-dim": "#dadada",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2f3131",
+                      "primary-fixed-dim": "#ecc300",
+                      "on-secondary-container": "#656464",
+                      "on-surface": "#1a1c1c",
+                      "surface-tint": "#715c00",
+                      "on-tertiary-fixed": "#271900",
+                      "secondary-fixed": "#e4e2e1",
+                      "secondary-container": "#e4e2e1",
+                      "on-surface-variant": "#4d4632",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary": "#5f5e5e",
+                      "inverse-primary": "#ecc300",
+                      "tertiary-container": "#ffd07c",
+                      "surface-container-highest": "#e2e2e2",
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "surface-container-high": "#e8e8e8",
+                      "on-tertiary-fixed-variant": "#5e4200",
+                      "outline": "#7f775f",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#705b00",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "surface": "#f9f9f9",
+                      "tertiary": "#7c5800",
+                      "on-tertiary-container": "#7b5700",
+                      "tertiary-fixed": "#ffdea8",
+                      "surface-container-low": "#f3f3f3",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-padding": "32px",
+                      "container-margin": "24px",
+                      "inline-gutter": "12px",
+                      "stack-gap": "16px"
+              },
+              "fontFamily": {
+                      "title-sm": [
+                              "Work Sans"
+                      ],
+                      "headline-md": [
+                              "Epilogue"
+                      ],
+                      "display-lg": [
+                              "Epilogue"
+                      ],
+                      "label-caps": [
+                              "Work Sans"
+                      ],
+                      "body-lg": [
+                              "Work Sans"
+                      ],
+                      "body-md": [
+                              "Work Sans"
+                      ]
+              },
+              "fontSize": {
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "34px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen antialiased flex flex-col pt-[72px] pb-[90px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b-2 border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 flex justify-between items-center px-6 py-4 w-full">
+<button class="text-zinc-500 dark:text-zinc-400 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center w-10 h-10 rounded-full overflow-hidden border-2 border-zinc-100"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIbJvtCz1R1V3APcZXU1qAyHAX863gUb8b7RvUYIV9RS0cYyAvNZEBcFRJJXFANneah9W3g9sXd5FaNfcv9Xt0aWN5zp54BAZx8uQSqQuuU-b5iBRIiJU12kar9dcSvNJLtwQyVLBdwnMpo9_AxcGz--b-l56gwRLmVVz74O2XfukIr-wS4_RmatdI3RYeuTXXN7QOkeXGjIeEPdZ2LgdmeMuqn9HxdcvqpB4L5HDVLIb5IIFMVUJwc7SB4f7CmwcaJZKaaIMZIuk" alt="Calendar" class="w-full h-full object-cover"></button>
+<div class="text-xl font-black text-zinc-900 dark:text-white uppercase italic font-['Epilogue'] tracking-tight">FoodRescue</div>
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-zinc-100 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center" style="outline: rgb(255, 211, 0) solid 2px; outline-offset: 2px;"><img alt="Profile" class="w-full h-full object-cover" src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg"></button>
+</header>
+<!-- Main Content -->
+<main class="flex-grow px-container-margin py-section-padding flex flex-col gap-section-padding">
+<!-- Profile Header -->
+<section class="flex flex-col items-center gap-stack-gap">
+<div class="w-24 h-24 rounded-full overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.1)] border-4 border-white">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A high-quality, closely framed portrait of a smiling young adult with a diverse background. The lighting is bright and even, highlighting their features against a softly blurred, modern urban background. The overall mood is energetic, approachable, and aligned with a clean, high-contrast minimal aesthetic." src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg">
+</div>
+<div class="text-center">
+<h1 class="font-headline-md text-headline-md text-on-background">Jin Kiam Siapp</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">kiamsiap.jin@gmail.com</p>
+</div>
+<!-- Impact Badge (Bento Grid Style) -->
+<div class="grid grid-cols-2 gap-4 w-full mt-4">
+<div class="bg-primary-container text-on-primary-container rounded-[16px] p-4 flex flex-col items-center justify-center text-center shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+<span class="material-symbols-outlined text-3xl mb-2" data-icon="restaurant" data-weight="fill" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+<span class="font-display-lg text-display-lg">42</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Meals Saved</span>
+</div>
+<div class="bg-white rounded-[16px] p-4 flex flex-col items-center justify-center text-center shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+<span class="material-symbols-outlined text-3xl mb-2 text-secondary" data-icon="co2">scale</span>
+<span class="font-display-lg text-display-lg text-on-background">120kg</span>
+
+<span class="font-label-caps text-label-caps uppercase mt-1">Total Weight</span></div>
+</div>
+</section>
+<!-- Personal Information -->
+<section class="bg-white rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+<h2 class="font-title-sm text-title-sm text-on-background mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+                Personal Information
+            </h2>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center py-2 border-b border-surface-variant last:border-0">
+<span class="font-body-md text-body-md text-on-surface-variant">Phone</span>
+<span class="font-body-md text-body-md text-on-background font-medium">+65 1234 5678</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant last:border-0">
+<span class="font-body-md text-body-md text-on-surface-variant">Location</span>
+<span class="font-body-md text-body-md text-on-background font-medium">Punggol, Singapore</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant last:border-0">
+<span class="font-body-md text-body-md text-on-surface-variant">Member Since</span>
+<span class="font-body-md text-body-md text-on-background font-medium">October 2023</span>
+</div>
+</div>
+</section>
+<!-- Reservation History (Glassmorphism/Card List) -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-title-sm text-title-sm text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+                    Recent Rescues
+                </h2>
+<a class="font-label-caps text-label-caps text-primary uppercase hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Rescue Item 1 -->
+<div class="bg-white rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex gap-4 items-center border-l-4 border-primary-container">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Bakery Items" class="w-full h-full object-cover" data-alt="A close-up, appetizing shot of assorted fresh bakery items like croissants and artisan bread arranged neatly. The lighting is warm and inviting, emphasizing the golden crusts. The background is a clean, slightly blurred bright surface, fitting a modern high-contrast aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8ckpJmdthlrbF2vTvwaIIqW6MYINbMd-Hi0EC8suxqZMrBv-jLvkd6mmDs6pYnmXhUD44_rHm11X83CWaJJ9MBhnWBbdQVHc5pvhNJ6Q496Awa-7rFUyrXW3DGEBEDALSWLqUXRgDU-OSODkfnT9TurUWjzwKLcVNSN7N4YuReG2LPF0Jv3U3soYoB4P2uIC52E1D15WqnG0JeuTkVGw4pwA76k9qzuyTr4S1SkiW6IWP5IwHVtB43PrYpbzz7JqKHIxKo6NAwI">
+</div>
+<div class="flex-grow">
+<h3 class="font-title-sm text-title-sm text-on-background line-clamp-1">Downtown Bakery Surplus</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Yesterday, 5:30 PM</p>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface font-label-caps text-label-caps rounded-md">Completed</span>
+</div>
+</div>
+<!-- Rescue Item 2 -->
+<div class="bg-white rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex gap-4 items-center border-l-4 border-secondary-fixed">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Grocery Items" class="w-full h-full object-cover" data-alt="A vibrant, overhead shot of a box filled with fresh, colorful vegetables and fruits. Bright, natural lighting creates sharp contrast against a pristine white background. The composition is clean and organized, conveying freshness and efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVVdYXnfDU6TSClFhxnc9ofbzqN3u8MWQ6zih3QWFHdZn14GNIifi7MfCnPOsNhkyRbpUPYQuh89cOPzpZnIcdgoBYMKq06KPzZjBOohp0IoEInOXDJeZsLL9DYWnbCtJq6pyYxTub6-FC310gn0LAflvVeBE56MmCkkImJJshsXfzDGyZ04AGZV41SaWGLW4591tH02NFJqrElMVPKmuhENQOlHKHPY-grZjG0cwB24rgjG6LF6z0Tt4iHhCdlHk0go1VxwDP35k">
+</div>
+<div class="flex-grow">
+<h3 class="font-title-sm text-title-sm text-on-background line-clamp-1">Green Market Grocers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Oct 24, 6:00 PM</p>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface font-label-caps text-label-caps rounded-md">Completed</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings Links -->
+<section class="bg-white rounded-[16px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+<div class="flex flex-col">
+<a class="flex justify-between items-center py-4 border-b border-surface-variant last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-2 -mx-2" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="notifications">notifications</span>
+<span class="font-body-lg text-body-lg text-on-background">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex justify-between items-center py-4 border-b border-surface-variant last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-2 -mx-2" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="payment">payment</span>
+<span class="font-body-lg text-body-lg text-on-background">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex justify-between items-center py-4 border-b border-surface-variant last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-2 -mx-2" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="lock">lock</span>
+<span class="font-body-lg text-body-lg text-on-background">Privacy &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Logout Action -->
+<section class="mt-4 pb-8">
+<button class="w-full bg-[#333333] text-white font-title-sm text-title-sm py-4 rounded-[16px] flex justify-center items-center gap-2 hover:bg-black transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl border-t-2 border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 md:hidden">
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="eco">eco</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-yellow-500 dark:text-yellow-400 bg-zinc-50 dark:bg-zinc-900 rounded-xl px-3 py-1 hover:text-yellow-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

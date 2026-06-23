@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home_marketplace_screen.dart';
+import 'home_screen.dart';
 import 'discovery_map_screen.dart';
-import 'reservations_tracker_screen.dart';
+import 'reservations_screen.dart';
 import 'impact_dashboard_screen.dart';
 import 'profile_screen.dart';
 import '../constants/app_colors.dart';
@@ -24,9 +24,9 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = const [
-    HomeMarketplaceScreen(),
+    HomeScreen(),
     DiscoveryMapScreen(),
-    ReservationsTrackerScreen(),
+    ReservationsScreen(),
     ImpactDashboardScreen(),
     ProfileScreen(),
   ];
