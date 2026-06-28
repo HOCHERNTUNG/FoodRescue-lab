@@ -1,0 +1,429 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Food Rescue - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2f3131",
+                    "outline-variant": "#d0c6ab",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#271900",
+                    "on-background": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f3f3f3",
+                    "tertiary": "#7c5800",
+                    "primary-container": "#ffd300",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "tertiary-fixed-dim": "#ffba20",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-primary": "#ecc300",
+                    "surface": "#f9f9f9",
+                    "primary": "#715c00",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "secondary-fixed": "#e4e2e1",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#231b00",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-tint": "#715c00",
+                    "primary-fixed": "#ffe17a",
+                    "on-tertiary-fixed-variant": "#5e4200",
+                    "secondary-container": "#e4e2e1",
+                    "on-tertiary-container": "#7b5700",
+                    "on-secondary-container": "#656464",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#705b00",
+                    "on-secondary-fixed-variant": "#474747",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#ffd07c",
+                    "background": "#f9f9f9",
+                    "surface-dim": "#dadada",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed-dim": "#ecc300",
+                    "on-surface-variant": "#4d4632",
+                    "tertiary-fixed": "#ffdea8",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline": "#7f775f",
+                    "on-primary-fixed-variant": "#554500",
+                    "on-surface": "#1a1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "16px",
+                    "section-padding": "32px",
+                    "inline-gutter": "12px",
+                    "container-margin": "24px"
+            },
+            "fontFamily": {
+                    "title-sm": [
+                            "Work Sans"
+                    ],
+                    "body-lg": [
+                            "Work Sans"
+                    ],
+                    "body-md": [
+                            "Work Sans"
+                    ],
+                    "headline-md": [
+                            "Epilogue"
+                    ],
+                    "label-caps": [
+                            "Work Sans"
+                    ],
+                    "display-lg": [
+                            "Epilogue"
+                    ]
+            },
+            "fontSize": {
+                    "title-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "34px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-zinc-950 border-b-2 border-zinc-100 dark:border-zinc-800 flex justify-between items-center px-6 py-4 transition-all duration-300">
+<button class="text-zinc-500 dark:text-zinc-400 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center p-1 border-2 border-zinc-100 dark:border-zinc-800 rounded-full">
+<img alt="Calendar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBItAZcTFPIkZ2-7HDDg38MZ3PzXjSMjsL7EmgtEzBcT31UZRwQ6Tdn8Ip_qmCe5SKM8ch0rIY6Vui2jwGtfHF9CgLMWJPaSsdeWw2XJc25H4eD_6tlQUYnTHlDRN5m7Y-wEIE5jrlx07DdWLDrVmaIcS1O88iMgcX_evcB9eBRfl6BcoJUnl0wq-lgkeSRVsbWpIbbsvQen_nugPV5QciFwBdKbyPMCczRXvqu6Beh0XojHtjHyfEKiQ0YXvGKL0SF9BPGbFwvrGU">
+</button>
+<h1 class="font-['Epilogue'] font-bold tracking-tight text-xl font-black text-zinc-900 dark:text-white uppercase italic">FoodRescue</h1>
+<button class="text-zinc-500 dark:text-zinc-400 hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center p-1 border-2 border-zinc-100 dark:border-zinc-800 rounded-full">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864.jpg">
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[72px] pb-[100px] px-container-margin md:px-0 md:max-w-4xl md:mx-auto">
+<!-- Search -->
+<div class="sticky top-[72px] z-40 bg-background/90 backdrop-blur-md py-4 -mx-container-margin px-container-margin md:mx-0 md:px-0 mt-2">
+<div class="relative group drop-shadow-sm">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-lowest border-2 border-surface-variant rounded-xl focus:outline-none focus:border-primary-container focus:ring-0 transition-colors font-body-md text-on-background placeholder:text-on-surface-variant/70 shadow-[0px_4px_20px_rgba(0,0,0,0.02)]" placeholder="Search for surplus meals, bakeries.." type="text">
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-3 overflow-x-auto hide-scrollbar -mx-container-margin px-container-margin md:mx-0 md:px-0 py-2 mt-2">
+<button class="shrink-0 px-6 py-2 rounded-full bg-on-background text-surface-container-lowest font-label-caps text-label-caps active:scale-95 transition-transform flex items-center"><span class="material-symbols-outlined text-[18px] mr-1">tune</span>All</button>
+<button class="shrink-0 px-6 py-2 rounded-full bg-surface-container-lowest border-2 border-surface-variant text-on-background font-label-caps text-label-caps hover:border-primary-container active:scale-95 transition-all shadow-[0px_4px_20px_rgba(0,0,0,0.06)]">Bakery</button>
+<button class="shrink-0 px-6 py-2 rounded-full bg-surface-container-lowest border-2 border-surface-variant text-on-background font-label-caps text-label-caps hover:border-primary-container active:scale-95 transition-all shadow-[0px_4px_20px_rgba(0,0,0,0.06)]">Produce</button>
+<button class="shrink-0 px-6 py-2 rounded-full bg-surface-container-lowest border-2 border-surface-variant text-on-background font-label-caps text-label-caps hover:border-primary-container active:scale-95 transition-all shadow-[0px_4px_20px_rgba(0,0,0,0.06)]">Gourmet</button>
+</div>
+<!-- 2-Column Grid -->
+<section class="mt-stack-gap">
+<h2 class="font-headline-md text-headline-md text-on-background mb-4 px-container-margin md:px-0">For You</h2>
+<div class="flex gap-inline-gutter overflow-x-auto snap-x snap-mandatory hide-scrollbar md:mx-0 md:px-0 pb-4"><!-- Item Card 1 -->
+<div class="shrink-0 snap-start bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.06)] flex flex-col group relative border border-surface-variant/50 w-[calc(65%-12px)]">
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1 rounded-md z-10 font-bold shadow-sm">8 Left</div>
+<div class="h-36 bg-surface-variant relative overflow-hidden">
+<img alt="Artisan Bakery Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5lF0q-y4unEG-TFQlryDKhT9bQ1lVDJaPadkavfkEzWc4C8dYv-HA2ESKtYOXosmafsJYP6U297QaBB3FSeUjVdqCRfF46HAgWoDV4YNpcr5PBu5SeHdH4uZmoM6Ucnz3dkng1ELB4b5h-di-hG-ZWMvxbWbj4N0fsbwDEWieXNUuzXqWSxrtpZFNutNOT1u54WGodAUhKP1E0ZkN2QwJwdoTGzHRhGEFiSSMrp6wcPlVRbBXachkZ8rnHUfew1yM1-4vhCnXiU0">
+<div class="absolute bottom-2 left-2 flex gap-1 z-10">
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">location_on</span>0.8 km</span>
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">schedule</span>5PM-6PM</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-0.5 line-clamp-1">The Daily Crumb</p>
+<h3 class="font-title-sm text-title-sm text-on-background mb-3 line-clamp-1 leading-tight">Artisan Bakery Box</h3>
+<div class="mt-auto flex justify-between items-end">
+<div>
+<p class="font-title-sm text-title-sm text-primary font-bold leading-none">$4.99</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-through text-[11px] mt-0.5">$12.50</p>
+</div>
+<button class="bg-primary-container h-8 px-3 rounded-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform text-[11px] font-bold uppercase tracking-wider">
+<span class="mr-1">Reserve</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="shrink-0 snap-start bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.06)] flex flex-col group relative border border-surface-variant/50 w-[calc(65%-12px)]">
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1 rounded-md z-10 font-bold shadow-sm">3 Left</div>
+<div class="h-36 bg-surface-variant relative overflow-hidden">
+<img alt="Fresh Greens Salad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCppsQwyUedRVXijvvrvSHhFGcqKG-Wq2KbpdQWFaN031Fi1wv7WvcwteUFOA0T_lMTgNrq3kLdbUZDJjl_6ZHD6G0BZqH_HnROQ12YgnJrR7k1Akwf3uqAdV4_5VopblvIZtfJEHa1MijlMJnIIvLesFzMmA32LMittApS-By2EFi9etfmXSKr2iXq3vpM0qumO28ayEU-NRGkw1lxKirLFCq75blDuhjnG19v01VrOaOzbn7b_qEKZfd3IJgOYowLE5dtaGSijKU">
+<div class="absolute bottom-2 left-2 flex gap-1 z-10">
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">location_on</span>1.2 km</span>
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">schedule</span>6PM-7PM</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-0.5 line-clamp-1">Fresh Greens Grocer</p>
+<h3 class="font-title-sm text-title-sm text-on-background mb-3 line-clamp-1 leading-tight">Fresh Greens Salad</h3>
+<div class="mt-auto flex justify-between items-end">
+<div>
+<p class="font-title-sm text-title-sm text-primary font-bold leading-none">$8.99</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-through text-[11px] mt-0.5">$16.49</p>
+</div>
+<button class="bg-primary-container h-8 px-3 rounded-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform text-[11px] font-bold uppercase tracking-wider">
+<span class="mr-1">Reserve</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="shrink-0 snap-start bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.06)] flex flex-col group relative border border-surface-variant/50 w-[calc(65%-12px)]">
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1 rounded-md z-10 font-bold shadow-sm">5 Left</div>
+<div class="h-36 bg-surface-variant relative overflow-hidden">
+<img alt="Green Leaf Salad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCppsQwyUedRVXijvvrvSHhFGcqKG-Wq2KbpdQWFaN031Fi1wv7WvcwteUFOA0T_lMTgNrq3kLdbUZDJjl_6ZHD6G0BZqH_HnROQ12YgnJrR7k1Akwf3uqAdV4_5VopblvIZtfJEHa1MijlMJnIIvLesFzMmA32LMittApS-By2EFi9etfmXSKr2iXq3vpM0qumO28ayEU-NRGkw1lxKirLFCq75blDuhjnG19v01VrOaOzbn7b_qEKZfd3IJgOYowLE5dtaGSijKU">
+<div class="absolute bottom-2 left-2 flex gap-1 z-10">
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">location_on</span>0.5 km</span>
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">schedule</span>4PM-5PM</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-0.5 line-clamp-1">Green Leaf Deli</p>
+<h3 class="font-title-sm text-title-sm text-on-background mb-3 line-clamp-1 leading-tight">Green Leaf Salad</h3>
+<div class="mt-auto flex justify-between items-end">
+<div>
+<p class="font-title-sm text-title-sm text-primary font-bold leading-none">$3.50</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-through text-[11px] mt-0.5">$7.00</p>
+</div>
+<button class="bg-primary-container h-8 px-3 rounded-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform text-[11px] font-bold uppercase tracking-wider">
+<span class="mr-1">Reserve</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div></div>
+</section>
+<!-- Featured Banner -->
+<section class="flex flex-col gap-stack-gap mt-section-padding">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container icon-fill">local_fire_department</span>
+                Deal of the Day
+            </h2>
+<div class="relative rounded-xl overflow-hidden flex items-end group cursor-pointer active:scale-[0.98] transition-transform duration-200 shadow-[0px_4px_25px_rgba(0,0,0,0.3)] min-h-[240px]">
+<img alt="Daily Bread Bundle" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9fLJXMIpFIv2Q3ShxB35zalOCYKPrk2uF2ZQytv2z5XiLAndvjvuL4mpNEsNBZQeT46FEZu599LWzXZrsOrehkiuZxJWh_El7skSHir9zKSXGQR4f0kE5Hplwq--YWMpptEhpFiYN_iwFoNkFOiO4H1TmA_Db6b9j2gOS7hCeTmHeJ95Z1s0qOvhlucP-732zobLy0iTasP1FfnVtgiqnvjzm6hlzMgUbvuSPhby3Nr1p1Lnkjo1AwCB4t6uSJewx-FPhFqpYVVM">
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white font-label-caps text-label-caps px-3 py-1 rounded-full flex items-center gap-1 border border-white/30">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+    Ends in 2h
+  </div>
+<div class="relative md:p-10 w-full p-4">
+<div class="flex items-center gap-2 mb-2 text-primary-fixed">
+<span class="material-symbols-outlined icon-fill text-[18px]">bakery_dining</span>
+<span class="font-label-caps text-label-caps opacity-90 uppercase tracking-widest">Artisan Bakery Box</span>
+</div>
+<h3 class="font-display-lg text-white text-headline-md mb-2">Daily Bread Bundle</h3>
+<div class="flex items-center justify-between gap-4">
+<div class="flex items-end gap-3">
+<span class="font-display-lg text-display-lg text-primary-fixed-dim">$4.99</span>
+<span class="font-body-md text-body-md text-white/50 line-through pb-1">$15.00</span>
+</div>
+<button class="bg-primary-fixed-dim text-on-primary-fixed-variant rounded-xl hover:opacity-90 transition-opacity py-2 px-5 text-body-md font-bold">
+        Reserve Now
+      </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 2-Column Grid (Row 2) -->
+<section class="mt-section-padding">
+<h2 class="font-headline-md text-headline-md text-on-background mb-4 px-container-margin md:px-0">Recently Added</h2>
+<div class="flex gap-inline-gutter overflow-x-auto snap-x snap-mandatory hide-scrollbar md:mx-0 md:px-0 pb-4"><!-- Item Card 1 -->
+<div class="shrink-0 snap-start bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.06)] flex flex-col group relative border border-surface-variant/50 w-[calc(65%-12px)]">
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1 rounded-md z-10 font-bold shadow-sm">3 Left</div>
+<div class="h-36 bg-surface-variant relative overflow-hidden">
+<img alt="Dinner Roast Surplus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDylqf3eqnkNwjZ1XUrNrxNdeDySXmVeU0x5SFUN6xlF2ovtPoOQAwd1owEATtLhSj491pv3REdMYqTibskbsPYQCgR-ozo3Lmn0pnnNsBk22zE32wAUaAbHgy-IPombTotaj_yaRvOMmDi2ji4JJh1Ykruzrkf_0E-qFVka-KHsxwS3NrCskVDSzul578TZGGRRakDlhbL-bGFMu-IP2W1o7iMc8OUiJshwE4ydWtc3j_jMGQRh_BL1CSDIriZN99PSonOU_WPGoU">
+<div class="absolute bottom-2 left-2 flex gap-1 z-10">
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">location_on</span>2.1 km</span>
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">schedule</span>7PM-8PM</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-0.5 line-clamp-1">Bistro 77</p>
+<h3 class="font-title-sm text-title-sm text-on-background mb-3 line-clamp-1 leading-tight">Dinner Roast Surplus</h3>
+<div class="mt-auto flex justify-between items-end">
+<div>
+<p class="font-title-sm text-title-sm text-primary font-bold leading-none">$6.50</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-through text-[11px] mt-0.5">$13.00</p>
+</div>
+<button class="bg-primary-container h-8 px-3 rounded-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform text-[11px] font-bold uppercase tracking-wider">
+<span class="mr-1">Reserve</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="shrink-0 snap-start bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.06)] flex flex-col group relative border border-surface-variant/50 w-[calc(65%-12px)]">
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1 rounded-md z-10 font-bold shadow-sm">3 Left</div>
+<div class="h-36 bg-surface-variant relative overflow-hidden">
+<img alt="End-of-Day Pastries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjmzlzXbvI6BX_39Oe7cu9P-4pttyvfQjh57AZ-4gXTp2_yRGmgKdHBqoKidniXDlxbcw3QeaeEBGzPgwIkyvrLdhmOaUszd50gVE_wHtZA5KnjeAbVJuw9rvHdael5AS3oImWCz4AK56YoNMzSdnT9m0bEY_GvYeSt2xShWg_YHdy8A4Q0d7iDjaJueTj1zU7o-01OR5TTo4sKs78NhJbhtiYBemIpQfkF6K0Mj75IkRe21KufcZjU2KDyzqwz-sZutQdPf24aIg">
+<div class="absolute bottom-2 left-2 flex gap-1 z-10">
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">location_on</span>0.3 km</span>
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">schedule</span>5PM-6PM</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-0.5 line-clamp-1">Sunrise Sweets</p>
+<h3 class="font-title-sm text-title-sm text-on-background mb-3 line-clamp-1 leading-tight">End-of-Day Pastries</h3>
+<div class="mt-auto flex justify-between items-end">
+<div>
+<p class="font-title-sm text-title-sm text-primary font-bold leading-none">$3.00</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-through text-[11px] mt-0.5">$12.00</p>
+</div>
+<button class="bg-primary-container h-8 px-3 rounded-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform text-[11px] font-bold uppercase tracking-wider">
+<span class="mr-1">Reserve</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="shrink-0 snap-start bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.06)] flex flex-col group relative border border-surface-variant/50 w-[calc(65%-12px)]">
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1 rounded-md z-10 font-bold shadow-sm">5 Left</div>
+<div class="h-36 bg-surface-variant relative overflow-hidden">
+<img alt="Artisan Bakery Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5lF0q-y4unEG-TFQlryDKhT9bQ1lVDJaPadkavfkEzWc4C8dYv-HA2ESKtYOXosmafsJYP6U297QaBB3FSeUjVdqCRfF46HAgWoDV4YNpcr5PBu5SeHdH4uZmoM6Ucnz3dkng1ELB4b5h-di-hG-ZWMvxbWbj4N0fsbwDEWieXNUuzXqWSxrtpZFNutNOT1u54WGodAUhKP1E0ZkN2QwJwdoTGzHRhGEFiSSMrp6wcPlVRbBXachkZ8rnHUfew1yM1-4vhCnXiU0">
+<div class="absolute bottom-2 left-2 flex gap-1 z-10">
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">location_on</span>0.8 km</span>
+<span class="bg-black/40 backdrop-blur-sm text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">schedule</span>5PM-6PM</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-0.5 line-clamp-1">The Daily Crumb</p>
+<h3 class="font-title-sm text-title-sm text-on-background mb-3 line-clamp-1 leading-tight">Artisan Bakery Box</h3>
+<div class="mt-auto flex justify-between items-end">
+<div>
+<p class="font-title-sm text-title-sm text-primary font-bold leading-none">$4.99</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-through text-[11px] mt-0.5">$12.50</p>
+</div>
+<button class="bg-primary-container h-8 px-3 rounded-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform text-[11px] font-bold uppercase tracking-wider">
+<span class="mr-1">Reserve</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div></div>
+</section>
+<!-- Impact Section -->
+<div class="mt-section-padding bg-primary-container rounded-xl p-6 relative overflow-hidden flex flex-col justify-between shadow-[0px_4px_20px_rgba(0,0,0,0.06)]">
+<div class="absolute -right-8 -bottom-8 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-on-primary-container" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="relative z-10">
+<p class="font-body-lg text-body-lg text-on-primary-container mb-1">Community Impact:</p>
+<h2 class="font-display-lg text-[28px] md:text-display-lg text-on-primary-container font-extrabold mb-2">9,819 kg</h2>
+<p class="font-body-md text-body-md text-on-primary-container/80">of food saved this month, Together.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white dark:bg-zinc-950 border-t-2 border-zinc-100 dark:border-zinc-800 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex justify-around items-center px-4 pb-6 pt-3 md:hidden">
+<!-- Active Tab: Home -->
+<button class="flex flex-col items-center justify-center text-primary-container dark:text-primary-container bg-zinc-50 dark:bg-zinc-900 rounded-xl px-3 py-1 hover:text-primary-container transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined icon-fill mb-1 text-[24px]">home</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Home</span>
+</button>
+<!-- Inactive Tabs -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-primary-container transition-colors active:scale-90 duration-200 px-3 py-1">
+<span class="material-symbols-outlined mb-1 text-[24px]">search</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-primary-container transition-colors active:scale-90 duration-200 px-3 py-1">
+<span class="material-symbols-outlined mb-1 text-[24px]">eco</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Impact</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-primary-container transition-colors active:scale-90 duration-200 px-3 py-1">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+<span class="font-['Epilogue'] text-[10px] font-bold uppercase tracking-wider">Profile</span>
+</button>
+</nav>
+
+
+
+
+
+
+
+
+
+
+</body></html>

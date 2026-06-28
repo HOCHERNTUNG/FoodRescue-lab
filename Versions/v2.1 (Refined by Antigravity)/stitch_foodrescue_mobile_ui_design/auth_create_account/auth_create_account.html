@@ -1,0 +1,174 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FoodRescue - Register</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#ffd300",
+                        "on-background": "#1a1c1c",
+                        "primary": "#715c00",
+                        "on-primary-fixed": "#231b00",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "outline-variant": "#d0c6ab",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-secondary-fixed-variant": "#474747",
+                        "background": "#f9f9f9",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "primary-fixed": "#ffe17a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#554500",
+                        "surface-dim": "#dadada",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed-dim": "#ecc300",
+                        "on-secondary-container": "#656464",
+                        "on-surface": "#1a1c1c",
+                        "surface-tint": "#715c00",
+                        "on-tertiary-fixed": "#271900",
+                        "secondary-fixed": "#e4e2e1",
+                        "secondary-container": "#e4e2e1",
+                        "on-surface-variant": "#4d4632",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "inverse-primary": "#ecc300",
+                        "tertiary-container": "#ffd07c",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "outline": "#7f775f",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#705b00",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9f9",
+                        "tertiary": "#7c5800",
+                        "on-tertiary-container": "#7b5700",
+                        "tertiary-fixed": "#ffdea8",
+                        "surface-container-low": "#f3f3f3",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "32px",
+                        "container-margin": "24px",
+                        "inline-gutter": "12px",
+                        "stack-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Work Sans"],
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"],
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-container-margin relative overflow-hidden">
+<!-- Decorative Background Element -->
+<div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary-container rounded-full opacity-10 blur-3xl z-0"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-secondary-fixed-dim rounded-full opacity-10 blur-3xl z-0"></div>
+<div class="w-full max-w-md bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-[32px] relative z-10">
+<!-- Header -->
+<div class="text-center mb-[32px]">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-container rounded-full mb-4">
+<span class="material-symbols-outlined text-4xl text-on-primary-fixed-variant" style="font-variation-settings: 'FILL' 1;">
+                        restaurant
+                    </span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-2 tracking-tight">Create Account</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Join FoodRescue to start making an impact.</p>
+</div>
+<!-- Registration Form -->
+<form class="space-y-stack-gap">
+<!-- Name Input -->
+<div class="flex flex-col gap-2">
+<label class="font-title-sm text-title-sm text-on-surface" for="name">Full Name</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-4 flex items-center text-outline">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface rounded-[16px] border-2 border-surface-variant focus:border-primary-container focus:ring-0 font-body-lg text-body-lg text-on-background placeholder:text-outline-variant outline-none transition-colors" id="name" name="name" placeholder="John Doe" type="text">
+</div>
+</div>
+<!-- Email Input -->
+<div class="flex flex-col gap-2">
+<label class="font-title-sm text-title-sm text-on-surface" for="email">Email Address</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-4 flex items-center text-outline">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface rounded-[16px] border-2 border-surface-variant focus:border-primary-container focus:ring-0 font-body-lg text-body-lg text-on-background placeholder:text-outline-variant outline-none transition-colors" id="email" name="email" placeholder="you@example.com" type="email">
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-2">
+<label class="font-title-sm text-title-sm text-on-surface" for="password">Password</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-4 flex items-center text-outline">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</span>
+<input class="w-full h-12 pl-12 pr-12 bg-surface rounded-[16px] border-2 border-surface-variant focus:border-primary-container focus:ring-0 font-body-lg text-body-lg text-on-background placeholder:text-outline-variant outline-none transition-colors" id="password" name="password" placeholder="••••••••" type="password">
+<button class="absolute inset-y-0 right-4 flex items-center text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-14 mt-[8px] bg-primary-container text-on-primary-fixed-variant font-title-sm text-title-sm rounded-[16px] flex items-center justify-center hover:bg-primary-fixed transition-colors" type="button">
+                    Create Account
+                </button>
+</form>
+<!-- Footer Link -->
+<div class="mt-[24px] text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Already have an account? 
+                    <a class="font-title-sm text-title-sm text-primary hover:text-on-primary-container transition-colors underline decoration-2 underline-offset-4" href="#">Login</a>
+</p>
+</div>
+</div>
+</main>
+</body></html>

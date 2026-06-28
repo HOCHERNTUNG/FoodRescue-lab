@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438412623602",
+    "project_id": "foodrescue-2e91f",
+    "storage_bucket": "foodrescue-2e91f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438412623602:android:a63f99eef21effacbe5a6b",
+        "android_client_info": {
+          "package_name": "com.hostudents.foodrescue.foodrescue_labgh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438412623602-idohgi4ejb8tavu8fqd7k9ckd3oo2f6r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqbde5eczvb1CJb-5unvnWnW27oPBNoFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438412623602-idohgi4ejb8tavu8fqd7k9ckd3oo2f6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

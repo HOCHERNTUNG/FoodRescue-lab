@@ -1,0 +1,207 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FoodRescue - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#ffd300",
+                        "on-background": "#1a1c1c",
+                        "primary": "#715c00",
+                        "on-primary-fixed": "#231b00",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "outline-variant": "#d0c6ab",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-secondary-fixed-variant": "#474747",
+                        "background": "#f9f9f9",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "primary-fixed": "#ffe17a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#554500",
+                        "surface-dim": "#dadada",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed-dim": "#ecc300",
+                        "on-secondary-container": "#656464",
+                        "on-surface": "#1a1c1c",
+                        "surface-tint": "#715c00",
+                        "on-tertiary-fixed": "#271900",
+                        "secondary-fixed": "#e4e2e1",
+                        "secondary-container": "#e4e2e1",
+                        "on-surface-variant": "#4d4632",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "inverse-primary": "#ecc300",
+                        "tertiary-container": "#ffd07c",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "outline": "#7f775f",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#705b00",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9f9",
+                        "tertiary": "#7c5800",
+                        "on-tertiary-container": "#7b5700",
+                        "tertiary-fixed": "#ffdea8",
+                        "surface-container-low": "#f3f3f3",
+                        "on-primary": "#ffffff",
+                        "charcoal": "#1a1c1c", 
+                        "cyber-yellow": "#ffd300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "system": "16px" 
+                    },
+                    "spacing": {
+                        "section-padding": "32px",
+                        "container-margin": "24px",
+                        "inline-gutter": "12px",
+                        "stack-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Work Sans"],
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"],
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f9;
+            background-image: radial-gradient(at 0% 0%, #ffffff 0, transparent 50%), radial-gradient(at 50% 0%, #f3f3f3 0, transparent 50%);
+            color: #1a1c1c;
+        }
+        
+        .input-field {
+            background-color: #ffffff;
+            border: 1px solid #d0c6ab;
+            color: #1a1c1c;
+        }
+        .input-field:focus {
+            border-color: #715c00;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(113, 92, 0, 0.1);
+        }
+        .input-field::placeholder {
+            color: #7f775f;
+        }
+        
+        .btn-primary {
+            background-color: #ffd300;
+            color: #1a1c1c;
+            font-weight: 700;
+            border-radius: 16px;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-google {
+            background-color: white;
+            color: #1a1c1c;
+            font-weight: 600;
+            border-radius: 16px;
+            border: 1px solid #e2e2e2;
+            transition: background-color 0.2s;
+        }
+        .btn-google:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+<style>
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-container-margin">
+<div class="w-full max-w-md bg-white rounded-system shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 flex flex-col gap-8 border border-surface-container">
+<div class="text-center flex flex-col items-center gap-4">
+<div class="w-16 h-16 rounded-2xl bg-cyber-yellow flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-4xl text-charcoal" data-icon="restaurant" data-weight="fill" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">FoodRescue</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Welcome back. Let's make an impact.</p>
+</div>
+</div>
+<form class="flex flex-col gap-stack-gap">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="mail">mail</span>
+</div>
+<input class="input-field w-full pl-12 pr-4 py-4 rounded-system font-body-lg text-body-lg" id="email" placeholder="name@example.com" required="" type="email">
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider" for="password">Password</label>
+<a class="font-label-caps text-label-caps text-primary hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+<input class="input-field w-full pl-12 pr-12 py-4 rounded-system font-body-lg text-body-lg" id="password" placeholder="••••••••" required="" type="password">
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="visibility_off">visibility_off</span>
+</button>
+</div>
+</div>
+<button class="btn-primary w-full py-4 mt-4 font-title-sm text-title-sm" type="submit">
+                Login
+            </button>
+</form>
+<div class="flex items-center gap-4 py-2">
+<div class="h-px bg-outline-variant flex-1 opacity-50"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">OR</span>
+<div class="h-px bg-outline-variant flex-1 opacity-50"></div>
+</div>
+<button class="btn-google w-full py-4 flex items-center justify-center gap-3 font-title-sm text-title-sm" type="button">
+<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+            Sign in with Google
+        </button>
+<div class="text-center mt-2">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                New to FoodRescue? <a class="text-primary font-title-sm text-title-sm hover:underline ml-1" href="#">Create Account</a>
+</p>
+</div>
+</div>
+</body></html>
